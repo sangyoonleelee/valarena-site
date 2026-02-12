@@ -3,277 +3,506 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#7C3AED" />
+  <meta name="theme-color" content="#6D28D9" />
   <title>발아레나 | VALARENA</title>
-  <meta name="description" content="발로란트 내전/토너먼트 중심 디스코드 커뮤니티, 발아레나(VALARENA) 공식 소개 페이지" />
+  <meta name="description" content="발로란트 내전/토너먼트 중심 디스코드 커뮤니티. 매일 내전, 2~3개 동시 진행, 참여자 전원 랜덤 추첨 이벤트." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="발아레나 | VALARENA" />
-  <meta property="og:description" content="발로란트 내전/토너먼트 중심 디스코드 커뮤니티, 발아레나 공식 소개" />
+  <meta property="og:description" content="매일 열리는 발로란트 내전. 밸런스 매칭 + 참여자 전원 랜덤 추첨 이벤트." />
   <meta property="og:type" content="website" />
-  <!-- og:image는 서버에 올린 이미지 URL로 교체 -->
   <meta property="og:image" content="https://sangyoonleelee.github.io/valarena-site/logo.png" />
-  
+
   <style>
     :root{
-      --bg:#0b0d12;
-      --card:#101522;
-      --muted:#9aa3b2;
-      --text:#eaf0ff;
-      --line:rgba(255,255,255,.08);
-      --brand:#7C3AED;      /* 보라 */
-      --brand2:#EF4444;     
-      --warn:#F59E0B;
-      --danger:#EF4444;
-      --shadow: 0 12px 40px rgba(0,0,0,.45);
-      --radius:18px;
-      --max:1120px;
+      --bg:#f7f8ff;
+      --bg2:#eef1ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line: rgba(15, 23, 42, .10);
+
+      --brand:#6D28D9;
+      --brand2:#7C3AED;
+      --good:#16a34a;
+      --warn:#f59e0b;
+
+      --shadow: 0 18px 50px rgba(2,6,23,.10);
+      --shadow2: 0 10px 25px rgba(2,6,23,.08);
+      --radius: 22px;
+      --max: 1120px;
+
+      --grad: linear-gradient(135deg, #6D28D9 0%, #7C3AED 45%, #4F46E5 100%);
+      --gradSoft: radial-gradient(900px 500px at 10% 10%, rgba(124,58,237,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 20%, rgba(79,70,229,.14), transparent 60%),
+                  radial-gradient(900px 500px at 50% 90%, rgba(109,40,217,.08), transparent 60%);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(900px 500px at 15% 10%, rgba(124,58,237,.32), transparent 60%),
-        radial-gradient(700px 450px at 85% 25%, rgba(239,68,68,.22), transparent 55%),
-        radial-gradient(600px 380px at 50% 90%, rgba(245,158,11,.12), transparent 55%),
-        var(--bg);
+      background: var(--gradSoft), linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* ===== NAV ===== */
     .nav{
-      position:sticky; top:0; z-index:50;
+      position: sticky;
+      top:0;
+      z-index:50;
+      background: rgba(247,248,255,.78);
       backdrop-filter: blur(10px);
-      background: rgba(11,13,18,.55);
-      border-bottom:1px solid var(--line);
+      border-bottom: 1px solid rgba(2,6,23,.08);
     }
     .nav-in{
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
       padding:14px 0;
-      gap:12px;
     }
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:-.02em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:-.02em;
     }
-    .brand .logo{
-      width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(239,68,68,.95), rgba(124,58,237,.75));
-      box-shadow: 0 10px 28px rgba(239,68,68,.20);
-      display:grid; place-items:center;
+    .logo{
+      width:36px;height:36px;
+      border-radius:14px;
       overflow:hidden;
+      box-shadow: 0 14px 35px rgba(109,40,217,.18);
+      background: var(--grad);
+      display:grid;place-items:center;
     }
-    .brand .logo img{width:100%; height:100%; object-fit:cover; display:block}
+    .logo img{width:100%; height:100%; object-fit:cover; display:block}
+    .brand small{display:block; font-weight:700; color:var(--muted); letter-spacing:0; margin-top:2px}
+
     .nav-links{
       display:flex; align-items:center; gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
     .chip{
-      padding:9px 12px; border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.92);
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(2,6,23,.10);
+      background: rgba(255,255,255,.60);
+      color: rgba(15,23,42,.80);
       font-size:13px;
+      font-weight:800;
     }
-    .chip:hover{border-color: rgba(124,58,237,.45)}
+    .chip:hover{border-color: rgba(109,40,217,.35)}
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       gap:10px;
       padding:12px 14px;
       border-radius:999px;
-      border:1px solid rgba(239,68,68,.35);
-      background: linear-gradient(135deg, rgba(239,68,68,.95), rgba(124,58,237,.65));
-      color:white;
-      font-weight:800;
-      box-shadow: 0 14px 35px rgba(239,68,68,.18);
+      border:1px solid rgba(109,40,217,.18);
+      background: var(--grad);
+      color:#fff;
+      font-weight:950;
+      box-shadow: 0 16px 40px rgba(109,40,217,.20);
       cursor:pointer;
       user-select:none;
     }
     .btn:hover{filter:brightness(1.05)}
     .btn.secondary{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      box-shadow:none;
-      font-weight:700;
+      background: rgba(255,255,255,.75);
+      color: rgba(15,23,42,.88);
+      border:1px solid rgba(2,6,23,.10);
+      box-shadow: var(--shadow2);
+      font-weight:900;
     }
+
+    .mobile-cta{display:none}
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .mobile-cta{display:inline-flex}
+    }
+
+    /* ===== HERO (더 깔끔한 첫 화면) ===== */
     .hero{
-      padding:54px 0 26px;
+      padding:56px 0 18px;
     }
+    .hero-wrap{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(2,6,23,.08);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-wrap:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(850px 360px at 15% 0%, rgba(109,40,217,.20), transparent 60%),
+        radial-gradient(700px 320px at 85% 20%, rgba(79,70,229,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      padding:34px 30px 26px;
+    }
+    @media (max-width: 520px){
+      .hero-inner{padding:26px 18px 18px}
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(109,40,217,.08);
+      border:1px solid rgba(109,40,217,.14);
+      color: rgba(109,40,217,.95);
+      font-weight:950;
+      font-size:13px;
+      width:fit-content;
+    }
+
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:20px;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
       align-items:stretch;
+      margin-top:14px;
     }
     @media (max-width: 900px){
       .hero-grid{grid-template-columns:1fr}
-      .nav-links{display:none}
     }
-    .h-card{
-      border:1px solid var(--line);
-      background: rgba(16,21,34,.72);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:26px;
-      position:relative;
-      overflow:hidden;
-    }
-    .h-card:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(400px 220px at 20% 0%, rgba(124,58,237,.32), transparent 55%),
-                  radial-gradient(420px 220px at 70% 10%, rgba(34,197,94,.18), transparent 60%);
-      pointer-events:none;
-    }
-    .h-card > *{position:relative}
-    .kicker{
-      display:inline-flex; gap:8px; align-items:center;
-      font-size:13px; color: rgba(234,240,255,.9);
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      width:fit-content;
-    }
-    .title{
-      margin:14px 0 10px;
-      font-size:42px;
-      line-height:1.08;
+
+    .hero-title{
+      margin:12px 0 10px;
+      font-size:44px;
+      line-height:1.06;
       letter-spacing:-.03em;
-      font-weight:900;
+      font-weight:950;
+      color: rgba(15,23,42,.95);
     }
-    .subtitle{
-      margin:0 0 18px;
-      font-size:16px;
+    @media (max-width: 520px){
+      .hero-title{font-size:36px}
+    }
+    .hero-sub{
+      margin:0 0 16px;
       color: var(--muted);
-      line-height:1.6;
+      font-weight:800;
+      line-height:1.7;
+      font-size:15px;
     }
-    .cta-row{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    }
-    .mini{
-      font-size:12px; color: rgba(234,240,255,.7);
+
+    .hero-points{
+      display:grid;
+      gap:10px;
       margin-top:10px;
+    }
+    .point{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-weight:900;
+      color: rgba(15,23,42,.86);
+      font-size:14px;
+      line-height:1.55;
+    }
+    .tick{
+      width:18px;height:18px;
+      border-radius:7px;
+      display:grid; place-items:center;
+      font-size:12px;
+      background: rgba(22,163,74,.12);
+      border:1px solid rgba(22,163,74,.20);
+      color: rgba(22,163,74,.95);
+      margin-top:2px;
+      flex:0 0 18px;
+    }
+
+    .hero-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    .statbox{
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(2,6,23,.08);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow2);
+      padding:18px;
     }
     .stats{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:10px;
-      margin-top:18px;
+    }
+    @media (max-width: 520px){
+      .stats{grid-template-columns:1fr}
     }
     .stat{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: 14px;
+      border:1px solid rgba(2,6,23,.08);
+      background: rgba(255,255,255,.70);
+      border-radius: 18px;
       padding:12px;
     }
-    .stat b{display:block; font-size:18px}
-    .stat span{display:block; font-size:12px; color: var(--muted); margin-top:4px}
-    .panel{
-      display:grid; gap:12px;
+    .stat b{
+      display:block;
+      font-size:20px;
+      letter-spacing:-.02em;
+      font-weight:950;
     }
-    .card{
-      border:1px solid var(--line);
-      background: rgba(16,21,34,.62);
-      border-radius: var(--radius);
-      padding:18px;
-    }
-    .card h3{margin:0 0 8px; font-size:16px}
-    .card p{margin:0; color: var(--muted); line-height:1.6; font-size:14px}
-    .badge-row{
-      display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;
-    }
-    .badge{
+    .stat span{
+      display:block;
+      margin-top:4px;
       font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.86);
+      color: var(--muted);
+      font-weight:800;
+      line-height:1.4;
+    }
+    .mini{
+      margin-top:12px;
+      color: var(--muted);
+      font-weight:800;
+      font-size:12px;
+      line-height:1.6;
     }
 
     section{padding:26px 0}
-    .sec-title{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:12px; margin-bottom:12px;
+    .sec-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
     }
-    .sec-title h2{
-      margin:0; font-size:22px; letter-spacing:-.02em;
+    .sec-head h2{
+      margin:0;
+      font-size:24px;
+      letter-spacing:-.02em;
+      font-weight:950;
     }
-    .sec-title p{margin:0; color:var(--muted); font-size:14px}
+    .sec-head p{
+      margin:0;
+      color: var(--muted);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    /* ===== CARDS ===== */
     .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:12px;
     }
-    @media (max-width: 900px){ .grid-3{grid-template-columns:1fr} }
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 900px){ .grid-2{grid-template-columns:1fr} }
+    @media (max-width: 900px){ .grid-3{grid-template-columns: 1fr} }
 
-    ul.clean{margin:10px 0 0; padding:0; list-style:none}
-    ul.clean li{
-      padding-left:26px; position:relative; margin:10px 0;
-      color: rgba(234,240,255,.88);
-      line-height:1.6;
-      font-size:14px;
+    .card{
+      background: rgba(255,255,255,.82);
+      border:1px solid rgba(2,6,23,.08);
+      box-shadow: var(--shadow2);
+      border-radius: var(--radius);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
     }
-    ul.clean li:before{
+    .card:before{
       content:"";
-      position:absolute; left:0; top:7px;
-      width:14px; height:14px; border-radius:6px;
-      background: rgba(239,68,68,.92);
-      box-shadow: 0 8px 20px rgba(239,68,68,.18);
+      position:absolute; inset:auto -120px -120px auto;
+      width:240px; height:240px;
+      background: radial-gradient(circle at 30% 30%, rgba(109,40,217,.20), transparent 62%);
+      transform: rotate(12deg);
+      pointer-events:none;
     }
+    .card > *{position:relative}
+    .icon{
+      width:44px; height:44px;
+      border-radius:16px;
+      background: rgba(109,40,217,.10);
+      border:1px solid rgba(109,40,217,.14);
+      display:grid; place-items:center;
+      font-size:18px;
+      font-weight:900;
+      color: rgba(109,40,217,.95);
+      margin-bottom:10px;
+    }
+    .card h3{margin:0 0 6px; font-size:16px; letter-spacing:-.01em; font-weight:950}
+    .card p{margin:0; color: var(--muted); line-height:1.7; font-weight:800; font-size:14px}
+
+    .list{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+    .list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-weight:900;
+      color: rgba(15,23,42,.86);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    /* ===== HIGHLIGHT ===== */
+    .highlight{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .highlight{grid-template-columns:1fr} }
 
     .callout{
-      border:1px solid rgba(245,158,11,.25);
-      background: rgba(245,158,11,.08);
+      background: rgba(255,255,255,.84);
+      border:1px solid rgba(2,6,23,.08);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow2);
+      padding:18px;
+      display:grid;
+      gap:10px;
     }
-    .danger{
-      border:1px solid rgba(239,68,68,.25);
-      background: rgba(239,68,68,.08);
+    .callout strong{font-size:16px; letter-spacing:-.01em; font-weight:950}
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
     }
-    .foot{
-      padding:22px 0 40px;
-      border-top:1px solid var(--line);
-      color: rgba(234,240,255,.7);
+    .tag{
       font-size:12px;
+      font-weight:950;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(109,40,217,.08);
+      border:1px solid rgba(109,40,217,.14);
+      color: rgba(109,40,217,.95);
+    }
+    .tag.good{
+      background: rgba(22,163,74,.08);
+      border:1px solid rgba(22,163,74,.14);
+      color: rgba(22,163,74,.95);
+    }
+    .tag.warn{
+      background: rgba(245,158,11,.10);
+      border:1px solid rgba(245,158,11,.16);
+      color: rgba(180,83,9,.95);
     }
 
-    .copybox{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      margin-top:10px;
+    .gift{
+      border-radius: calc(var(--radius) + 8px);
+      background: linear-gradient(135deg, rgba(109,40,217,.10), rgba(79,70,229,.08));
+      border:1px solid rgba(109,40,217,.16);
+      box-shadow: var(--shadow2);
+      padding:18px;
     }
-    .input{
-      flex:1;
-      min-width:260px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: rgba(234,240,255,.9);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:12px;
-      outline:none;
+    .gift b{display:block; font-size:16px; margin-bottom:6px; font-weight:950}
+    .gift p{margin:0; color:var(--muted); font-weight:800; line-height:1.7; font-size:14px}
+    .gift ul{
+      margin:10px 0 0; padding:0; list-style:none;
+      display:grid; gap:8px;
     }
-    .toast{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background: rgba(16,21,34,.92);
-      border:1px solid var(--line);
-      padding:10px 12px;
-      border-radius:999px;
+    .gift li{
+      display:flex; gap:10px; align-items:flex-start;
+      font-weight:950;
+      color: rgba(15,23,42,.86);
       font-size:13px;
-      color: rgba(234,240,255,.92);
-      box-shadow: var(--shadow);
-      display:none;
-      z-index:100;
+      line-height:1.55;
+    }
+    .dot{
+      width:18px;height:18px; flex:0 0 18px;
+      border-radius:7px;
+      background: rgba(109,40,217,.10);
+      border:1px solid rgba(109,40,217,.16);
+      display:grid; place-items:center;
+      color: rgba(109,40,217,.95);
+      font-size:12px;
+      margin-top:2px;
+    }
+
+    /* ===== FAQ ===== */
+    .faq{
+      display:grid;
+      gap:10px;
+    }
+    .qa{
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(2,6,23,.08);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .q{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 16px;
+      cursor:pointer;
+      border:0;
+      background: transparent;
+      text-align:left;
+      font-weight:950;
+      letter-spacing:-.01em;
+      color: rgba(15,23,42,.90);
+      font-size:14px;
+    }
+    .plus{
+      width:34px; height:34px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.10);
+      background: rgba(109,40,217,.06);
+      display:grid; place-items:center;
+      font-size:18px;
+      font-weight:950;
+      color: rgba(109,40,217,.95);
+      flex:0 0 34px;
+    }
+    .a{
+      max-height:0;
+      overflow:hidden;
+      transition: max-height .25s ease;
+      border-top:1px solid rgba(2,6,23,.08);
+      background: rgba(255,255,255,.55);
+    }
+    .a p{
+      margin:0;
+      padding:14px 16px;
+      color: var(--muted);
+      font-weight:850;
+      line-height:1.75;
+      font-size:14px;
+    }
+    .qa.open .a{max-height:260px}
+    .qa.open .plus{background: rgba(109,40,217,.10)}
+
+    /* ===== FOOT ===== */
+    .foot{
+      padding:24px 0 44px;
+      border-top:1px solid rgba(2,6,23,.08);
+      color: rgba(15,23,42,.70);
+      font-weight:850;
+      font-size:12px;
+    }
+    .foot-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
   </style>
 </head>
@@ -281,412 +510,304 @@
 <body>
   <header class="nav">
     <div class="wrap nav-in">
-      <div class="brand" aria-label="브랜드">
+      <div class="brand">
         <div class="logo" title="로고">
-          <!-- 로고 이미지 쓰려면 logo.png를 같은 폴더에 두고 아래 img 주석 해제 -->
           <img src="./logo.png" alt="VALARENA 로고" />
-          
         </div>
         <div>
-          <div style="font-size:14px; opacity:.92;">발아레나</div>
-          <div style="font-size:12px; color:var(--muted); margin-top:1px;">VALARENA Discord</div>
+          <div style="font-size:14px;">발아레나</div>
+          <small>VALARENA | 매일 내전 & 이벤트</small>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="페이지 이동">
-        <a class="chip" href="#about">소개</a>
-        <a class="chip" href="#features">특징</a>
-        <a class="chip" href="#how">참여방법</a>
-        <a class="chip" href="#rules">규칙</a>
-        <a class="chip" href="#events">이벤트</a>
+        <a class="chip" href="#services">서비스</a>
+        <a class="chip" href="#highlights">강점</a>
         <a class="chip" href="#faq">FAQ</a>
         <a class="btn" id="joinTop" href="#" target="_blank" rel="noopener">디스코드 입장</a>
       </nav>
 
-      <a class="btn" id="joinTopMobile" href="#" target="_blank" rel="noopener" style="display:none;">입장</a>
+      <a class="btn mobile-cta" id="joinTopMobile" href="#" target="_blank" rel="noopener">입장</a>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="h-card">
-          <div class="kicker">🎮 발로란트 내전 · 토너먼트 · 커뮤니티</div>
-          <h1 class="title">발아레나<br/>공식 서버 안내</h1>
-          <p class="subtitle">
-            실력에 맞는 매칭, 티어 기반 밸런스, 깔끔한 운영으로<br/>
-            <b style="color:rgba(234,240,255,.95)">“재밌게, 공정하게, 오래”</b> 즐기는 발로란트 디스코드.
-          </p>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="hero-wrap">
+          <div class="hero-inner">
+            <div class="badge">🎮 매일 열리는 발로란트 내전 · 참여자 전원 랜덤 추첨 이벤트</div>
 
-          <div class="cta-row">
-            <a class="btn" id="joinHero" href="#" target="_blank" rel="noopener">🚀 지금 참여하기</a>
-            <a class="btn secondary" href="#how">📌 참여방법 보기</a>
-            <a class="btn secondary" href="#events">🏆 이벤트 확인</a>
-          </div>
+            <div class="hero-grid">
+              <div>
+                <h1 class="hero-title">
+                  발아레나에서<br/>
+                  “공정하고 재밌게” 내전하자
+                </h1>
 
-          <div class="copybox">
-            <input class="input" id="inviteInput" readonly value="V-ARENA" />
-            <button class="btn secondary" id="copyInvite" type="button">링크 복사</button>
-          </div>
+                <p class="hero-sub">
+                  고티어(레디언트/불멸)부터 브론즈/실버까지 함께 어울리며 성장하는 내전 커뮤니티.<br/>
+                  매일 운영 + 동시 다개 내전 + 밸런스 매칭으로 “들어오면 편한 구조”를 지향합니다.
+                </p>
 
-          <div class="stats" aria-label="핵심 지표">
-            <!-- 숫자는 네가 운영에 맞게 바꿔줘 -->
-            <div class="stat"><b id="statMembers">3,600+</b><span>커뮤니티 규모</span></div>
-            <div class="stat"><b id="statEvents">매일</b><span>내전/모집</span></div>
-            <div class="stat"><b id="statOps">관리</b><span>운영/제재 시스템</span></div>
-          </div>
+                <div class="hero-points">
+                  <div class="point"><span class="tick">✓</span><b>매일 내전 진행</b> 평균: 하루 25~30명+</div>
+                  <div class="point"><span class="tick">✓</span><b>동시에 2개(4팀)~3개(6팀)</b> 운영</div>
+                  <div class="point"><span class="tick">✓</span><b>내전 이벤트 참여자 전원 랜덤 추첨</b>이라 실력 부담 없이 공평</div>
+                </div>
 
-          <div class="mini">※ 본 페이지는 발아레나 디스코드 커뮤니티의 공식 소개용 안내 페이지입니다.</div>
-        </div>
+                <div class="hero-cta">
+                  <a class="btn" id="joinHero" href="#" target="_blank" rel="noopener">🚀 디스코드 바로 입장</a>
+                  <a class="btn secondary" href="#services">서비스 알아보기</a>
+                </div>
+              </div>
 
-        <div class="panel">
-          <div class="card">
-            <h3>✅ 이런 사람에게 딱</h3>
-            <p>내전 좋아하는데 매번 밸런스가 아쉽다 / 티어 사칭, 대리 때문에 스트레스 받는다 / 대회도 해보고 싶다</p>
-            <div class="badge-row">
-              <span class="badge">티어 기반 밸런싱</span>
-              <span class="badge">친목 & 매너</span>
-              <span class="badge">토너먼트 운영</span>
-              <span class="badge">전용 봇 시스템</span>
+              <div class="statbox" aria-label="핵심 지표">
+                <div class="stats">
+                  <div class="stat">
+                    <b id="stat1">매일</b>
+                    <span>내전 운영</span>
+                  </div>
+                  <div class="stat">
+                    <b id="stat2">30+</b>
+                    <span>일일 참석 현황</span>
+                  </div>
+                  <div class="stat">
+                    <b id="stat3">2~3개</b>
+                    <span>동시 내전(4~6팀)</span>
+                  </div>
+                </div>
+                <div class="mini">
+                  ※ 자세한 운영 방식/규칙은 서버 내부 공지/고정 메시지가 최종 기준입니다.
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="card callout">
-            <h3>🔔 공지 & 안내</h3>
-            <p>서버 규칙/운영 방침을 먼저 확인하고 참여하면 적응이 훨씬 빠릅니다. <b>처음 온 분은 #공지사항 채널</b>부터!</p>
-          </div>
-
-          <div class="card">
-            <h3>🤝 운영 안내</h3>
-            <p>공정(대리/사칭/부정행위 금지) · 안전(분쟁 최소화) · 재미(이벤트/내전) · 지속(운영 자동화)</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about">
+    <!-- SERVICES -->
+    <section id="services">
       <div class="wrap">
-        <div class="sec-title">
-          <h2>서버 소개</h2>
-          <p>발아레나는 “밸런스 있는 내전과 공정한 대회”를 목표로 운영합니다.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <h3>발아레나란?</h3>
-            <p>
-              발로란트 플레이어들이 모여 내전(스크림), 랭크 파티, 토너먼트를 즐기는 디스코드 커뮤니티입니다.
-              누구나 참여 가능하지만, <b>규칙과 매너</b>를 지키는 문화를 가장 중요하게 생각합니다.
-            </p>
-            <ul class="clean">
-              <li>티어 기반 역할(권장)로 밸런스 맞춘 내전</li>
-              <li>이벤트/대회 운영 경험 축적</li>
-              <li>관리/제재 기준을 명확히 해서 분쟁 최소화</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>우리가 지키는 것</h3>
-            <p>서버 분위기/공정성을 무너뜨리는 행동은 빠르게 제재합니다. 대신, 신규 유저 적응은 최대한 친절하게 돕습니다.</p>
-            <ul class="clean">
-              <li>대리/부계 사칭/핵 등 부정행위 불가</li>
-              <li>욕설/비하/성희롱/혐오 발언 불가</li>
-              <li>분쟁은 공개 싸움이 아니라 운영진 문의로 해결</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features">
-      <div class="wrap">
-        <div class="sec-title">
-          <h2>발아레나 핵심 특징</h2>
-          <p>“들어오면 편한 구조”로 운영합니다.</p>
+        <div class="sec-head">
+          <h2>서비스</h2>
+          <p>왜 발아레나에서 내전하면 편한가</p>
         </div>
 
         <div class="grid-3">
           <div class="card">
-            <h3>⚖️ 밸런스 내전</h3>
-            <p>티어/역할 기반으로 팀 밸런스를 최대한 맞춰서, 한쪽만 압도하는 게임을 줄입니다.</p>
+            <div class="icon">⚖️</div>
+            <h3>밸런스 팀 매칭</h3>
+            <p>한쪽만 압도하는 게임을 줄이기 위해 팀 밸런스를 최대한 맞춰 진행합니다.</p>
+            <ul class="list">
+              <li><span class="tick">✓</span>팀 구성 밸런스 신경</li>
+              <li><span class="tick">✓</span>내전 품질 유지</li>
+              <li><span class="tick">✓</span>불만/분쟁 최소화</li>
+            </ul>
           </div>
+
           <div class="card">
-            <h3>🛡️ 공정성 관리</h3>
-            <p>대리/사칭/부정행위 제재 기준을 명확히 하고, 증거 기반으로 처리합니다.</p>
+            <div class="icon">🧠</div>
+            <h3>고티어/저티어 함께 성장</h3>
+            <p>레디/불멸부터 브론즈/실버까지 같이 뛰면서 배우는 기회가 많습니다.</p>
+            <ul class="list">
+              <li><span class="tick">✓</span>실전에서 바로 체감</li>
+              <li><span class="tick">✓</span>팀플/콜 감각 향상</li>
+              <li><span class="tick">✓</span>누구나 참여 장벽 낮음</li>
+            </ul>
           </div>
+
           <div class="card">
-            <h3>🤖 전용 봇 시스템</h3>
-            <p>모집/참가/공지/팀 관리 등을 자동화해서 운영 부담을 줄이고 진행을 빠르게 합니다.</p>
-          </div>
-          <div class="card">
-            <h3>🏆 토너먼트/리그</h3>
-            <p>예선-본선 구조, 참여자 공지, 팀 채널 생성 등 대회 운영 흐름을 갖추고 있습니다.</p>
-          </div>
-          <div class="card">
-            <h3>📣 공지/안내 깔끔</h3>
-            <p>필수 안내는 짧고 명확하게, 필요한 정보는 고정/정리해서 신규 유저도 쉽게 따라오게 합니다.</p>
-          </div>
-          <div class="card">
-            <h3>💬 커뮤니티 분위기</h3>
-            <p>친목은 자유롭게, 다만 누구나 편하게 있을 수 있도록 선을 지키는 문화를 지향합니다.</p>
+            <div class="icon">🎁</div>
+            <h3>참여자 전원 랜덤 추첨</h3>
+            <p>내전을 잘해야 받는 게 아니라, 참여자 전부 포함해 랜덤으로 뽑아 공평합니다.</p>
+            <ul class="list">
+              <li><span class="tick">✓</span>실력 부담 없음</li>
+              <li><span class="tick">✓</span>부담 없이 참여 가능</li>
+              <li><span class="tick">✓</span>돌발 이벤트로 재미↑</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="how">
+    <!-- HIGHLIGHTS -->
+    <section id="highlights">
       <div class="wrap">
-        <div class="sec-title">
-          <h2>참여 방법</h2>
-          <p>처음 온 분 기준으로 “3분 컷” 안내</p>
+        <div class="sec-head">
+          <h2>강점</h2>
+          <p>한 줄로 끝내는 “왜 여기냐”</p>
         </div>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3>1) 서버 입장</h3>
-            <p>아래 버튼으로 디스코드에 들어와 주세요.</p>
-            <div class="cta-row" style="margin-top:10px;">
-              <a class="btn" id="joinHow" href="#" target="_blank" rel="noopener">🚀 디스코드 입장</a>
-              <button class="btn secondary" id="copyInvite2" type="button">링크 복사</button>
+        <div class="highlight">
+          <div class="callout">
+            <strong>📌 “사람이 모이는 구조”가 이미 잡혀 있음</strong>
+            <div style="color:var(--muted); font-weight:850; line-height:1.75;">
+              매일 내전 + 동시 2~3개 운영으로 수용량이 넉넉하고,<br/>
+              밸런스까지 맞춰서 “재밌게 끝나는 판” 비율을 높입니다.<br/><br/>
+              그리고 핵심은 <b>참여자 전원 랜덤 추첨</b>이라 “실력 부담 없이 일단 참여”가 됩니다.
+            </div>
+            <div class="tags">
+              <span class="tag">매일 내전</span>
+              <span class="tag">2~3개 동시</span>
+              <span class="tag good">전원 추첨</span>
+              <span class="tag">밸런스 매칭</span>
             </div>
           </div>
 
-          <div class="card">
-            <h3>2) 필수 확인</h3>
-            <p>서버 규칙/공지/모집 채널 위치를 확인합니다. (고정 메시지 꼭 확인)</p>
-            <ul class="clean">
-              <li>#규칙 / #공지 확인</li>
-              <li>내전 모집 방식 확인(예: 신청 이모지/명령어)</li>
-              <li>문의는 운영진 DM 또는 문의 채널 이용</li>
+          <div class="gift">
+            <b>🎁 상품 지급 이력(예시)</b>
+            <p>참여자 대상 돌발 이벤트로 실제 지급했던 이력들을 강조할 수 있어요.</p>
+            <ul>
+              <li><span class="dot">✓</span>아티산 하야테 오츠 마우스패드</li>
+              <li><span class="dot">✓</span>Razer Viper V3 마우스</li>
+              <li><span class="dot">✓</span>레이저 헤드셋</li>
+              <li><span class="dot">✓</span>3,650 ~ 5,350 VP</li>
             </ul>
           </div>
-
-          <div class="card">
-            <h3>3) 티어 인증(권장)</h3>
-            <p>티어 기반 밸런스 내전을 위해 인증을 권장합니다. 방법은 서버 안내에 따라 진행.</p>
-          </div>
-
-          <div class="card callout">
-            <h3>4) 첫 내전 참여 팁</h3>
-            <p>
-              모집글 올라오면 규칙대로 신청 → 안내 시간에 음성 채널 입장 → 팀 배정 후 진행!<br/>
-              <b>늦참/노쇼</b>는 다른 참가자에게 피해가 될 수 있어요.
-            </p>
-          </div>
         </div>
       </div>
     </section>
 
-    <section id="rules">
-      <div class="wrap">
-        <div class="sec-title">
-          <h2>서버 규칙(요약)</h2>
-          <p>상세 규칙은 서버 내 #규칙을 최우선으로 합니다.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card danger">
-            <h3>🚫 즉시 제재(예시)</h3>
-            <ul class="clean">
-              <li>대리/계정 공유/티어 사칭/부정 프로그램(핵/매크로 등)</li>
-              <li>혐오/차별/성희롱/도 넘는 욕설/지속적인 분란 조장</li>
-              <li>내전/대회 관련 고의 트롤, 스나이핑, 정보 유출</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>✅ 기본 매너</h3>
-            <ul class="clean">
-              <li>팀원에게 최소한의 존중(피드백은 건설적으로)</li>
-              <li>분쟁은 공개 말싸움 대신 운영진에 제보/문의</li>
-              <li>모집 시간/집합 시간 준수(노쇼 방지)</li>
-            </ul>
-            <p style="margin-top:10px; color:var(--muted); font-size:13px;">
-              운영진은 커뮤니티 보호를 위해 <b>증거 기반</b>으로 처리하며, 필요 시 추가 확인을 요청할 수 있습니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="events">
-      <div class="wrap">
-        <div class="sec-title">
-          <h2>이벤트 & 토너먼트</h2>
-          <p>내전 + 시즌 이벤트 + 대회까지</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>🎯 정기 내전</h3>
-            <p>정해진 시간대에 모집이 자주 열립니다. (시간/방식은 공지 참고)</p>
-          </div>
-          <div class="card">
-            <h3>🏆 토너먼트</h3>
-            <p>예선/본선 구조로 진행하며, 팀 등록/전용 채널 운영 등 체계적으로 진행합니다.</p>
-          </div>
-          <div class="card">
-            <h3>🎁 보상/후원</h3>
-            <p>이벤트 성격에 따라 상품/상금이 있을 수 있으며, 공지된 규정에 따라 지급됩니다.</p>
-          </div>
-        </div>
-
-        <div class="card callout" style="margin-top:12px;">
-          <h3>📌 공지 보는 법</h3>
-          <p>
-            이벤트 참여 전 <b>공지/규칙/제재 기준</b>을 먼저 확인해주세요.
-            대회 공지는 보통 “일정 · 참가 조건 · 진행 방식 · 문의처” 순으로 안내됩니다.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="sec-title">
-          <h2>문의</h2>
-          <p>분쟁/신고/제휴/후원 문의는 운영진을 통해 진행합니다.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <h3>운영진 문의</h3>
-            <p>
-              서버 내 문의 채널 또는 운영진 DM으로 연락해주세요.<br/>
-              <span style="color:rgba(234,240,255,.86)">가능하면 증거(스크린샷/클립/시간대)를 함께</span> 보내주면 처리 속도가 빨라요.
-            </p>
-          </div>
-          <div class="card">
-            <h3>제휴/후원 문의</h3>
-            <p>
-              제휴/후원은 “목적 · 기간 · 제공 방식 · 조건”을 간단히 적어서 보내주시면 검토 후 답변드립니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- FAQ -->
     <section id="faq">
       <div class="wrap">
-        <div class="sec-title">
+        <div class="sec-head">
           <h2>FAQ</h2>
-          <p>자주 묻는 질문</p>
+          <p>처음 오는 사람이 가장 많이 묻는 것만</p>
         </div>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3>Q. 처음인데 바로 내전 참여해도 돼요?</h3>
-            <p>A. 가능! 다만 #규칙, #공지, 모집 방식만 확인하고 참여해줘요.</p>
+        <div class="faq">
+          <div class="qa">
+            <button class="q" type="button">
+              Q. 내전은 정말 매일 열리나요?
+              <span class="plus">+</span>
+            </button>
+            <div class="a">
+              <p>
+                네. 기본적으로 <b>매일 진행</b>을 전제로 운영합니다.
+                상황에 따라 <b>동시 2개(4팀)~3개(6팀)</b>까지 열어 수용량을 확보합니다.
+              </p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Q. 티어 인증은 필수인가요?</h3>
-            <p>A. 필수는 아닐 수 있지만, 밸런스 내전을 위해 권장합니다. (서버 안내 우선)</p>
-          </div>
-          <div class="card">
-            <h3>Q. 분쟁이 생기면 어떻게 해요?</h3>
-            <p>A. 공개 채팅에서 싸우지 말고 운영진에게 증거와 함께 문의해주세요.</p>
-          </div>
-          <div class="card">
-            <h3>Q. 부정행위 의심되면요?</h3>
-            <p>A. 확정 단정 대신, 클립/스크린샷 등 자료를 모아 운영진에게 제보해주세요.</p>
-          </div>
-        </div>
 
-        <div class="card" style="margin-top:12px;">
-          <h3>📎 더 자세한 안내</h3>
-          <p>서버 내부의 고정/공지 문서가 최종 기준입니다. 페이지 내용은 요약이며, 운영 정책은 상황에 따라 업데이트될 수 있어요.</p>
+          <div class="qa">
+            <button class="q" type="button">
+              Q. 고티어만 유리한 구조 아닌가요?
+              <span class="plus">+</span>
+            </button>
+            <div class="a">
+              <p>
+                아닙니다. 이벤트는 <b>참여자 전원 포함 랜덤 추첨</b>이라 실력 부담 없이 공평하게 진행됩니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button class="q" type="button">
+              Q. 팀 밸런스는 어떻게 맞추나요?
+              <span class="plus">+</span>
+            </button>
+            <div class="a">
+              <p>
+                티어/역할 기반으로 팀을 구성해 <b>한쪽만 압도</b>되는 매치를 줄이도록 운영합니다.
+                (세부 기준은 서버 공지/운영 정책이 최종)
+              </p>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button class="q" type="button">
+              Q. 처음인데 바로 참여해도 되나요?
+              <span class="plus">+</span>
+            </button>
+            <div class="a">
+              <p>
+                가능해요. 다만 <b>#규칙/#공지</b>와 모집 방식(신청 이모지/절차)을 먼저 확인하면 적응이 훨씬 빠릅니다.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="foot">
+    <!-- CONTACT -->
+    <section id="contact">
       <div class="wrap">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-          <div>
-            <div style="font-weight:800; color:rgba(234,240,255,.92)">발아레나 | VALARENA</div>
-            <div style="margin-top:6px;">© <span id="year"></span> VALARENA. All rights reserved.</div>
+        <div class="sec-head">
+          <h2>문의</h2>
+          <p>분쟁/신고/제휴 문의는 운영진을 통해</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon">💬</div>
+            <h3>운영진 문의</h3>
+            <p>서버 내 문의 채널 또는 운영진 DM으로 연락해주세요. 가능하면 증거(스크린샷/클립/시간대)를 함께.</p>
           </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="chip" href="#rules">규칙</a>
-            <a class="chip" href="#contact">문의</a>
-            <a class="chip" id="joinFoot" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+          <div class="card">
+            <div class="icon">📣</div>
+            <h3>공지 확인</h3>
+            <p>운영 방식/규칙/이벤트는 공지가 최종 기준입니다. 고정 메시지 먼저 확인하면 바로 적응됩니다.</p>
           </div>
+          <div class="card">
+            <div class="icon">🚀</div>
+            <h3>지금 참여하기</h3>
+            <p>아래 버튼으로 바로 서버에 들어와서 #공지/#규칙부터 확인해 주세요.</p>
+            <div style="margin-top:12px;">
+              <a class="btn" id="joinFoot" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="foot">
+      <div class="wrap foot-row">
+        <div>
+          <div style="font-weight:950; color:rgba(15,23,42,.92)">발아레나 | VALARENA</div>
+          <div style="margin-top:6px;">© <span id="year"></span> VALARENA. All rights reserved.</div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="chip" href="#services">서비스</a>
+          <a class="chip" href="#faq">FAQ</a>
+          <a class="btn" id="joinFooterBtn" href="#" target="_blank" rel="noopener">디스코드 입장</a>
         </div>
       </div>
     </section>
   </main>
 
-  <div class="toast" id="toast">복사 완료!</div>
-
   <script>
-    // === 설정값(여기만 수정하면 됨) ===
-    const serverName = "발아레나";
-    const inviteLink = "https://discord.gg/V-ARENA"; // 
-
-    // 숫자수정
-    const stats = {
-      members: "5,000+",
-      events: "매일",
-      ops: "상시"
+    // ✅ 여기만 바꾸면 전체 반영
+    const CONFIG = {
+      inviteLink: "https://discord.gg/V-ARENA",
+      stats: { s1: "매일", s2: "25~30+", s3: "2~3개" }
     };
 
-    // === 적용 ===
-    document.title = `${serverName} | VALARENA`;
-    document.getElementById("inviteInput").value = inviteLink;
-
-    document.getElementById("statMembers").textContent = stats.members;
-    document.getElementById("statEvents").textContent = stats.events;
-    document.getElementById("statOps").textContent = stats.ops;
-
-    const joinIds = ["joinTop","joinTopMobile","joinHero","joinHow","joinFoot"];
-    joinIds.forEach(id=>{
+    ["joinTop","joinTopMobile","joinHero","joinFoot","joinFooterBtn"].forEach(id=>{
       const el = document.getElementById(id);
-      if(el) el.href = inviteLink;
+      if(el) el.href = CONFIG.inviteLink;
     });
 
-    // 모바일에서 상단 버튼만 보이도록
-    const mq = window.matchMedia("(max-width: 900px)");
-    const updateNav = () => {
-      const mobileBtn = document.getElementById("joinTopMobile");
-      if(!mobileBtn) return;
-      mobileBtn.style.display = mq.matches ? "inline-flex" : "none";
-    };
-    mq.addEventListener?.("change", updateNav);
-    updateNav();
+    document.getElementById("stat1").textContent = CONFIG.stats.s1;
+    document.getElementById("stat2").textContent = CONFIG.stats.s2;
+    document.getElementById("stat3").textContent = CONFIG.stats.s3;
 
-    // 복사 기능
-    function toast(msg){
-      const t = document.getElementById("toast");
-      t.textContent = msg || "복사 완료!";
-      t.style.display = "block";
-      clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(()=> t.style.display="none", 1400);
-    }
+    // FAQ accordion
+    document.querySelectorAll(".qa .q").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const qa = btn.closest(".qa");
+        const isOpen = qa.classList.contains("open");
+        document.querySelectorAll(".qa").forEach(x=>x.classList.remove("open"));
+        if(!isOpen) qa.classList.add("open");
+      });
+    });
 
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        toast("초대 링크 복사 완료!");
-      }catch(e){
-        // fallback
-        const inp = document.getElementById("inviteInput");
-        inp.focus(); inp.select();
-        document.execCommand("copy");
-        toast("복사 완료!");
-      }
-    }
-
-    document.getElementById("copyInvite").addEventListener("click", ()=> copyText(inviteLink));
-    document.getElementById("copyInvite2").addEventListener("click", ()=> copyText(inviteLink));
-
-    // 연도
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
-
-
-
-
-
