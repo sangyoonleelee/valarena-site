@@ -1,1036 +1,885 @@
-
-
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <meta name="theme-color" content="#0B0D16" />
   <title>발아레나 | VALARENA</title>
   <meta name="description" content="발로란트 내전/토너먼트 중심 디스코드 커뮤니티. 매일 내전, 2~3개 동시 진행, 참여자 전원 랜덤 추첨 이벤트." />
 
-  <!-- Open Graph (Discord / Kakao / SNS 미리보기) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="VALARENA | 발로란트 내전 플랫폼">
   <meta property="og:description" content="매일 열리는 발로란트 내전 · 밸런스 매칭 · 참여자 전원 랜덤 추첨 이벤트">
   <meta property="og:url" content="https://www.valarena.kro.kr/">
   <meta property="og:image" content="https://media.discordapp.net/attachments/1441335254425272321/1456547322262720694/valarena.jpg">
 
-  <!-- 트위터 / 디코 호환 -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="VALARENA | 발로란트 내전 플랫폼">
   <meta name="twitter:description" content="매일 열리는 발로란트 내전 · 밸런스 매칭 · 참여자 전원 랜덤 추첨 이벤트">
   <meta name="twitter:image" content="https://media.discordapp.net/attachments/1441335254425272321/1456547322262720694/valarena.jpg">
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+    *{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --max: 1120px;
+      --primary:#6366f1;
+      --primary-dark:#4f46e5;
+      --secondary:#14b8a6;
+      --dark:#0f172a;
+      --light:#f8fafc;
+      --gray:#64748b;
+      --success:#10b981;
+      --warning:#f59e0b;
+      --gradient:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
 
-      /* default accent (will be overridden by banner color-pick if possible) */
-      --brand:#8B5CF6;
-      --brand2:#4F46E5;
-      --good:#22C55E;
-      --warn:#F59E0B;
-
-      /* Dark default */
-      --bg0:#070812;
-      --bg1:#0B0D16;
-      --text:#EAF0FF;
-      --muted: rgba(234,240,255,.72);
-      --muted2: rgba(234,240,255,.55);
-
-      --card: rgba(255,255,255,.050);
-      --card2: rgba(255,255,255,.085);
-      --line: rgba(255,255,255,.11);
-
-      --r14:14px; --r18:18px; --r22:22px; --r28:28px;
-
-      --shadow: 0 28px 80px rgba(0,0,0,.50);
-      --shadow2: 0 16px 44px rgba(0,0,0,.34);
-      --hair: 0 0 0 1px var(--line) inset;
-
-      --ease: cubic-bezier(.2,.8,.2,1);
-
-      --grad: linear-gradient(135deg, var(--brand) 0%, color-mix(in oklab, var(--brand) 70%, #6D28D9) 38%, var(--brand2) 100%);
-      --glow:
-        radial-gradient(900px 520px at 18% 10%, color-mix(in oklab, var(--brand) 22%, transparent), transparent 60%),
-        radial-gradient(900px 520px at 88% 12%, color-mix(in oklab, var(--brand2) 20%, transparent), transparent 60%),
-        radial-gradient(900px 520px at 50% 92%, color-mix(in oklab, var(--good) 10%, transparent), transparent 60%);
-
-      --focus: 0 0 0 4px color-mix(in oklab, var(--brand) 24%, transparent);
+      --hero-grad: linear-gradient(135deg,#3b82f6 0%,#8b5cf6 40%,#06b6d4 100%);
     }
 
-    body.light{
-      --bg0:#f6f7ff;
-      --bg1:#ecefff;
-      --text:#0F172A;
-      --muted:#5b6b82;
-      --muted2: rgba(15,23,42,.60);
-
-      --card: rgba(255,255,255,.82);
-      --card2: rgba(255,255,255,.95);
-      --line: rgba(2,6,23,.10);
-
-      --shadow: 0 18px 58px rgba(2,6,23,.14);
-      --shadow2: 0 12px 34px rgba(2,6,23,.10);
-
-      --glow:
-        radial-gradient(900px 520px at 18% 10%, color-mix(in oklab, var(--brand) 16%, transparent), transparent 60%),
-        radial-gradient(900px 520px at 88% 12%, color-mix(in oklab, var(--brand2) 12%, transparent), transparent 60%),
-        radial-gradient(900px 520px at 50% 92%, color-mix(in oklab, var(--good) 7%, transparent), transparent 60%);
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family:"Pretendard", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
-      color:var(--text);
-      background: var(--glow), linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
+      font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+      background:var(--light);
+      color:var(--dark);
       overflow-x:hidden;
-      text-rendering:optimizeLegibility;
-      -webkit-tap-highlight-color: transparent;
+      user-select:none;
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px; position:relative; z-index:1}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* Subtle grain */
-    body:before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.22;
-      mix-blend-mode: overlay;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
-      z-index:0;
+    /* ===== NAV ===== */
+    nav{
+      position:fixed;top:0;left:0;right:0;
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+      padding:15px 0;
+      box-shadow:0 2px 20px rgba(0,0,0,0.08);
+      transition:all 0.3s ease;
+      border-bottom:1px solid rgba(15,23,42,0.06);
     }
-
-    /* ===== Topbar ===== */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      background: color-mix(in oklab, var(--bg0) 74%, transparent);
-      backdrop-filter: blur(14px);
-      border-bottom:1px solid var(--line);
-    }
-    .top-in{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:14px 0;
-    }
+    nav.scrolled{padding:10px 0;background:rgba(255,255,255,0.98)}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width: 220px;
+      display:flex;align-items:center;gap:12px;
+      min-width:220px;
     }
-    .logo{
-      width:38px; height:38px; border-radius: 14px;
+    .brandLogo{
+      width:40px;height:40px;border-radius:14px;
       overflow:hidden;
-      background: var(--grad);
-      box-shadow: 0 18px 55px color-mix(in oklab, var(--brand) 26%, transparent);
-      flex:0 0 38px;
-      display:grid; place-items:center;
+      background:var(--gradient);
+      box-shadow:0 10px 30px rgba(99,102,241,0.25);
+      flex:0 0 40px;
+      display:grid;place-items:center;
     }
-    .logo img{width:100%; height:100%; object-fit:cover; display:block}
-    .btxt .name{font-weight:950; letter-spacing:-.02em; font-size:15px}
-    .btxt .sub{margin-top:2px; font-weight:850; font-size:12px; color:var(--muted)}
+    .brandLogo img{width:100%;height:100%;object-fit:cover;display:block}
+    .brandText{display:flex;flex-direction:column;line-height:1.05}
+    .brandText b{font-size:15px;font-weight:900;letter-spacing:-0.04em}
+    .brandText span{margin-top:4px;font-size:12px;font-weight:600;color:var(--gray);letter-spacing:-0.02em}
 
-    .nav{display:flex; align-items:center; gap:10px; justify-content:center;}
-    .link{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 70%, transparent);
-      box-shadow: var(--hair);
-      font-weight:850;
-      font-size:13px;
-      color: color-mix(in oklab, var(--text) 88%, var(--muted));
-      transition: transform .15s var(--ease), box-shadow .15s var(--ease), border-color .15s var(--ease);
-      user-select:none;
+    .nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+    .nav-links a{
+      color:var(--gray);
+      font-weight:600;
+      transition:color .25s ease, transform .25s ease;
+      letter-spacing:-0.02em;
     }
-    .link:hover{
-      transform: translateY(-1px);
-      border-color: color-mix(in oklab, var(--brand) 34%, var(--line));
-      box-shadow: var(--shadow2);
-    }
+    .nav-links a:hover{color:var(--primary);transform:translateY(-1px)}
 
-    .actions{display:flex; align-items:center; gap:10px; justify-content:flex-end; min-width: 220px;}
+    .nav-actions{display:flex;gap:10px;align-items:center;justify-content:flex-end;min-width:220px}
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px;
-      border-radius: 999px;
-      border:1px solid color-mix(in oklab, var(--brand) 30%, var(--line));
-      background: var(--grad);
-      color:#fff;
-      font-weight:950;
-      box-shadow: 0 22px 70px color-mix(in oklab, var(--brand) 30%, transparent);
-      cursor:pointer;
-      transition: transform .15s var(--ease), box-shadow .15s var(--ease), filter .15s var(--ease);
-      user-select:none;
+      padding:12px 18px;border-radius:999px;
+      font-size:14px;font-weight:800;
+      border:none;cursor:pointer;
+      transition:all .25s ease;
+      display:inline-flex;align-items:center;gap:8px;
+      letter-spacing:-0.02em;
     }
-    .btn:hover{ transform: translateY(-1px); filter:brightness(1.05); box-shadow: 0 34px 100px color-mix(in oklab, var(--brand) 36%, transparent); }
-    .btn:active{ transform: translateY(0) scale(.985); }
-    .btn:focus-visible{ outline:none; box-shadow: var(--shadow2), var(--focus); }
-
-    .btn.ghost{
-      background: color-mix(in oklab, var(--card2) 70%, transparent);
-      color: color-mix(in oklab, var(--text) 92%, var(--muted));
-      border:1px solid var(--line);
-      box-shadow: var(--hair);
+    .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 12px 30px rgba(99,102,241,0.22)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(99,102,241,0.30)}
+    .btn-ghost{
+      background:#fff;color:var(--dark);
+      border:1px solid rgba(15,23,42,0.10);
     }
+    .btn-ghost:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.08)}
 
-    .iconbtn{
-      width:44px; height:44px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 66%, transparent);
-      box-shadow: var(--hair);
-      display:grid; place-items:center;
-      cursor:pointer;
-      transition: transform .15s var(--ease), box-shadow .15s var(--ease), border-color .15s var(--ease);
-    }
-    .iconbtn:hover{ transform: translateY(-1px); border-color: color-mix(in oklab, var(--brand) 34%, var(--line)); box-shadow: var(--shadow2); }
-    .iconbtn:focus-visible{ outline:none; box-shadow: var(--shadow2), var(--focus); }
-    .iconbtn svg{ width:18px; height:18px; }
-    .iconbtn .sun{ display:none; }
-    body.light .iconbtn .moon{ display:none; }
-    body.light .iconbtn .sun{ display:block; }
-
-    @media (max-width: 980px){
-      .nav{display:none}
-      .brand,.actions{min-width:auto}
-      .btn.ghost{display:none}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .brand,.nav-actions{min-width:auto}
     }
 
     /* ===== HERO ===== */
-    .hero{ padding: 30px 0 12px; }
-    .heroShell{
-      border-radius: var(--r28);
-      border: 1px solid var(--line);
-      background: color-mix(in oklab, var(--card2) 72%, transparent);
-      box-shadow: var(--shadow);
-      overflow:hidden;
+    header{
+      margin-top:72px;
+      min-height:92vh;
+      background:var(--hero-grad);
       position:relative;
-    }
-    .heroShell:before{
-      content:"";
-      position:absolute; inset:-1px;
-      pointer-events:none;
-      background:
-        radial-gradient(900px 520px at 14% 4%, color-mix(in oklab, var(--brand) 16%, transparent), transparent 64%),
-        radial-gradient(900px 520px at 92% 18%, color-mix(in oklab, var(--brand2) 14%, transparent), transparent 64%);
-      opacity:.9;
-    }
-    .heroGrid{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1.06fr .94fr;
-      align-items: stretch;
-    }
-    @media (max-width: 980px){ .heroGrid{ grid-template-columns: 1fr; } }
-
-    .heroLeft{ padding: 22px 22px 18px; position:relative; z-index:2; }
-
-    .kickers{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-    .k{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 74%, transparent);
-      box-shadow: var(--hair);
-      font-weight:950;
-      font-size:12.5px;
-      color: color-mix(in oklab, var(--text) 90%, var(--muted));
-      user-select:none;
-    }
-    .pip{
-      width:9px; height:9px; border-radius:99px;
-      background: var(--grad);
-      box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 22%, transparent);
-    }
-
-    .hTitle{
-      margin: 14px 0 10px;
-      font-size: clamp(34px, 3.6vw, 52px);
-      line-height: 1.02;
-      letter-spacing: -.06em;
-      font-weight: 950;
-    }
-    .hTitle .accent{
-      background: var(--grad);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
-    }
-    .hSub{
-      margin:0;
-      max-width: 62ch;
-      color: var(--muted);
-      font-weight: 850;
-      font-size: 15.5px;
-      line-height: 1.75;
-    }
-
-    .ctaRow{ margin-top: 16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .metaRow{
-      margin-top: 12px;
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      color: var(--muted2);
-      font-weight: 850;
-      font-size: 12.5px;
-      line-height: 1.6;
-    }
-
-    .heroRight{ position:relative; min-height: 380px; }
-    @media (max-width: 980px){ .heroRight{ min-height: 300px; } }
-
-    .heroDivider{
-      position:absolute; top:0; bottom:0;
-      left: calc(100% * 1.06 / (1.06 + .94));
-      width:1px; background: var(--line); opacity:.9;
-      display:block; z-index:2;
-    }
-    @media (max-width: 980px){ .heroDivider{ display:none; } }
-
-    .banner{ position:absolute; inset:0; overflow:hidden; }
-    .banner img{
-      width:100%; height:100%;
-      object-fit: cover;
-      object-position: center;
-      transform: translate3d(0,0,0) scale(1.05);
-      filter: saturate(1.08) contrast(1.04);
-      will-change: transform;
-    }
-
-    /* premium masking */
-    .banner:before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 520px at 24% 24%, color-mix(in oklab, var(--brand) 34%, transparent), transparent 58%),
-        radial-gradient(900px 520px at 86% 12%, color-mix(in oklab, var(--brand2) 26%, transparent), transparent 60%),
-        radial-gradient(900px 520px at 70% 92%, color-mix(in oklab, var(--good) 14%, transparent), transparent 62%),
-        linear-gradient(90deg,
-          color-mix(in oklab, var(--bg0) 78%, transparent) 0%,
-          transparent 56%,
-          color-mix(in oklab, var(--bg0) 76%, transparent) 100%);
-      pointer-events:none; z-index:2;
-    }
-    .banner:after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, transparent 0%, color-mix(in oklab, var(--bg0) 40%, transparent) 62%, color-mix(in oklab, var(--bg0) 74%, transparent) 100%);
-      pointer-events:none; z-index:2;
-    }
-
-    /* watermark (very subtle, makes it “brand”) */
-    .watermark{
-      position:absolute; inset:0;
-      z-index:3; pointer-events:none;
-      display:flex;
-      align-items:flex-end;
-      justify-content:flex-end;
-      padding: 14px 16px;
-      opacity:.18;
-      mix-blend-mode: overlay;
-      user-select:none;
-    }
-    .watermark b{
-      font-weight: 950;
-      letter-spacing: .12em;
-      font-size: 12px;
-      text-transform: uppercase;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid color-mix(in oklab, var(--text) 22%, transparent);
-      background: color-mix(in oklab, var(--card) 30%, transparent);
-      box-shadow: var(--hair);
-      color: color-mix(in oklab, var(--text) 64%, transparent);
-    }
-
-    /* floating panel */
-    .floatPanel{
-      position:absolute; right: 14px; bottom: 14px;
-      z-index:4;
-      width: min(390px, calc(100% - 28px));
-      border-radius: var(--r22);
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card2) 78%, transparent);
-      box-shadow: var(--shadow2);
-      padding: 12px;
-      backdrop-filter: blur(12px);
-    }
-    .fpTop{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--line);
-    }
-    .fpTop .t{ display:flex; flex-direction:column; gap:2px; }
-    .fpTop .t b{ font-weight:950; letter-spacing:-.01em; }
-    .fpTop .t span{ color: var(--muted); font-weight:850; font-size:12px; }
-    .statusPill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 74%, transparent);
-      box-shadow: var(--hair);
-      font-weight: 950;
-      font-size: 12px;
-      white-space:nowrap;
-      color: color-mix(in oklab, var(--text) 90%, var(--muted));
-    }
-    .liveDot{
-      width:8px; height:8px; border-radius:99px;
-      background: color-mix(in oklab, var(--good) 92%, #000);
-      box-shadow: 0 0 0 4px color-mix(in oklab, var(--good) 18%, transparent);
-    }
-    .fpGrid{
-      margin-top: 10px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 520px){ .fpGrid{ grid-template-columns: 1fr; } }
-    .metric{
-      border-radius: var(--r14);
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 74%, transparent);
-      box-shadow: var(--hair);
-      padding: 10px;
-    }
-    .metric b{ display:block; font-weight:950; letter-spacing:-.02em; font-size: 18px; }
-    .metric span{ display:block; margin-top: 4px; color: var(--muted); font-weight:850; font-size: 12px; line-height:1.35; }
-
-    /* ===== Marquee ===== */
-    .marquee{
-      border-top:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 58%, transparent);
-      overflow:hidden;
-    }
-    .track{
-      display:flex; gap:18px;
-      padding: 10px 0;
-      width:max-content;
-      animation: scroll 26s linear infinite;
-    }
-    .marquee:hover .track{ animation-play-state: paused; }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card2) 64%, transparent);
-      box-shadow: var(--hair);
-      font-weight: 900;
-      font-size: 12.5px;
-      color: color-mix(in oklab, var(--text) 90%, var(--muted));
-      user-select:none;
-      white-space:nowrap;
-    }
-    .chip i{
-      width:8px; height:8px; border-radius:99px;
-      background: var(--grad);
-      display:inline-block;
-      box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 16%, transparent);
-    }
-    @keyframes scroll{ from{ transform: translateX(0);} to{ transform: translateX(-50%);} }
-
-    /* ===== Sections ===== */
-    section{ padding: 36px 0; }
-    .head{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:12px; margin-bottom: 14px;
-    }
-    .head h2{ margin:0; font-size: 24px; letter-spacing:-.02em; font-weight: 950; }
-    .head p{ margin:0; color: var(--muted); font-weight: 850; font-size: 14px; }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-    }
-    @media (max-width: 900px){ .grid{ gap: 10px; } }
-    .span-7{ grid-column: span 7; }
-    .span-5{ grid-column: span 5; }
-    .span-6{ grid-column: span 6; }
-    .span-4{ grid-column: span 4; }
-    .span-8{ grid-column: span 8; }
-    .span-12{ grid-column: span 12; }
-    @media (max-width: 900px){
-      .span-7,.span-5,.span-6,.span-4,.span-8{ grid-column: span 12; }
-    }
-
-    .card{
-      border-radius: var(--r22);
-      border: 1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 76%, transparent);
-      box-shadow: var(--shadow2);
-      padding: 18px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .18s var(--ease), box-shadow .18s var(--ease), border-color .18s var(--ease);
-    }
-    .card:hover{
-      transform: translateY(-3px);
-      border-color: color-mix(in oklab, var(--brand) 32%, var(--line));
-      box-shadow: var(--shadow);
-    }
-    .card:before{
-      content:"";
-      position:absolute; inset:auto -160px -160px auto;
-      width:320px; height:320px;
-      background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand2) 18%, transparent), transparent 62%);
-      transform: rotate(12deg);
-      pointer-events:none;
-      opacity:.9;
-    }
-    .card > *{ position:relative; }
-
-    .kbadge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card2) 66%, transparent);
-      box-shadow: var(--hair);
-      font-weight: 950;
-      font-size: 12px;
-      width: fit-content;
-      color: color-mix(in oklab, var(--text) 90%, var(--muted));
-    }
-    .kbadge .box{
-      width:28px; height:28px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--brand) 10%, var(--card));
-      box-shadow: var(--hair);
-      font-weight: 950;
-    }
-
-    .card h3{
-      margin: 10px 0 6px;
-      font-size: 17px;
-      font-weight: 950;
-      letter-spacing:-.01em;
-      color: color-mix(in oklab, var(--text) 96%, var(--muted));
-    }
-    .card p{
-      margin:0;
-      color: var(--muted);
-      font-weight: 850;
-      line-height: 1.7;
-      font-size: 14.5px;
-    }
-
-    .list{
-      margin: 12px 0 0; padding:0;
-      list-style:none;
-      display:grid;
-      gap: 8px;
-    }
-    .list li{
-      display:flex; gap:10px; align-items:flex-start;
-      font-weight: 900;
-      color: color-mix(in oklab, var(--text) 90%, var(--muted));
-      font-size: 13.5px;
-      line-height: 1.55;
-    }
-    .chk{
-      width:18px; height:18px;
-      border-radius: 7px;
-      display:grid; place-items:center;
-      border:1px solid color-mix(in oklab, var(--good) 28%, var(--line));
-      background: color-mix(in oklab, var(--good) 12%, var(--card));
-      color: color-mix(in oklab, var(--good) 92%, #000);
-      flex:0 0 18px;
-      margin-top:2px;
-      font-size: 12px;
-    }
-
-    /* ===== CTA band ===== */
-    .ctaBand{
-      border-radius: var(--r28);
-      border:1px solid var(--line);
-      background: linear-gradient(135deg,
-        color-mix(in oklab, var(--brand) 14%, var(--card)),
-        color-mix(in oklab, var(--brand2) 10%, var(--card))
-      );
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-      padding: 18px;
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+      overflow:hidden;
     }
-    .ctaBand:before{
-      content:"";
-      position:absolute; inset:-2px;
+    header::before{
+      content:'';
+      position:absolute;inset:0;
       background:
-        radial-gradient(900px 420px at 12% 0%, color-mix(in oklab, var(--brand) 22%, transparent), transparent 60%),
-        radial-gradient(900px 420px at 92% 20%, color-mix(in oklab, var(--brand2) 18%, transparent), transparent 60%);
+        radial-gradient(800px 420px at 20% 20%, rgba(255,255,255,0.22), transparent 60%),
+        radial-gradient(900px 520px at 80% 30%, rgba(255,255,255,0.16), transparent 62%),
+        radial-gradient(900px 520px at 50% 100%, rgba(16,185,129,0.18), transparent 64%);
+      opacity:0.9;
       pointer-events:none;
     }
-    .ctaBand > *{ position:relative; }
-    .ctaBand b{ font-weight: 950; letter-spacing:-.01em; font-size: 16px; color: color-mix(in oklab, var(--text) 96%, var(--muted)); }
-    .ctaBand span{ display:block; margin-top:6px; color: var(--muted); font-weight: 850; line-height:1.65; }
+    header::after{
+      content:'';
+      position:absolute;top:-60px;left:-60px;
+      width:320px;height:320px;border-radius:80px;
+      background:rgba(255,255,255,0.10);
+      transform:rotate(18deg);
+      filter:blur(1px);
+      opacity:0.8;
+      pointer-events:none;
+    }
 
-    /* ===== FAQ ===== */
-    .faq{ display:grid; gap:10px; }
-    .qa{
-      border-radius: var(--r22);
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 76%, transparent);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      transition: transform .18s var(--ease), box-shadow .18s var(--ease), border-color .18s var(--ease);
-    }
-    .qa:hover{
-      transform: translateY(-2px);
-      border-color: color-mix(in oklab, var(--brand) 30%, var(--line));
-      box-shadow: var(--shadow);
-    }
-    /* ✅ FIX: FAQ 질문 글자색 */
-    .q{
+    .hero{
+      position:relative;
+      z-index:1;
+      color:#fff;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:30px;
+      align-items:center;
       width:100%;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding: 16px 16px;
-      border:0;
-      background: transparent;
-      text-align:left;
+    }
+    @media(max-width:980px){ .hero{grid-template-columns:1fr} }
+
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:10px;
+      background:rgba(255,255,255,0.18);
+      padding:10px 18px;border-radius:999px;
+      font-size:0.95em;font-weight:700;
+      margin-bottom:18px;
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.18);
+    }
+    .dot{width:10px;height:10px;border-radius:99px;background:rgba(16,185,129,0.95);box-shadow:0 0 0 5px rgba(16,185,129,0.20)}
+    .hero-title{
+      font-size:3.4em;
+      font-weight:900;
+      margin-bottom:18px;
+      line-height:1.12;
+      letter-spacing:-0.06em;
+    }
+    @media(max-width:768px){ .hero-title{font-size:2.55em} }
+
+    .hero-subtitle{
+      font-size:1.15em;
+      font-weight:400;
+      margin-bottom:28px;
+      opacity:0.96;
+      max-width:58ch;
+      line-height:1.75;
+    }
+
+    .hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-white{
+      background:#fff;
+      color:#4f46e5;
+      box-shadow:0 12px 34px rgba(255,255,255,0.22);
+    }
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(255,255,255,0.28)}
+    .btn-outline{
+      background:transparent;
+      color:#fff;
+      border:2px solid rgba(255,255,255,0.9);
+    }
+    .btn-outline:hover{background:#fff;color:#4f46e5}
+
+    /* Right: banner card */
+    .heroCard{
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.20);
+      backdrop-filter: blur(10px);
+    }
+    .heroBanner{
+      position:relative;
+      aspect-ratio: 16 / 10;
+      overflow:hidden;
+    }
+    .heroBanner img{
+      width:100%;height:100%;
+      object-fit:cover;display:block;
+      transform:scale(1.03);
+      filter:saturate(1.08) contrast(1.03);
+    }
+    .heroBanner::after{
+      content:'';
+      position:absolute;inset:0;
+      background: linear-gradient(180deg, rgba(15,23,42,0.05) 0%, rgba(15,23,42,0.35) 60%, rgba(15,23,42,0.55) 100%);
+      pointer-events:none;
+    }
+    .heroCardBody{padding:18px}
+    .heroMiniTitle{
+      font-weight:900;letter-spacing:-0.03em;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      margin-bottom:12px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.18);
+      font-weight:800;font-size:12px;
+      white-space:nowrap;
+    }
+    .stats{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:10px;margin-top:12px;
+    }
+    @media(max-width:520px){ .stats{grid-template-columns:1fr} }
+    .stat{
+      background:rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.16);
+      border-radius:16px;
+      padding:12px;
+    }
+    .stat b{display:block;font-size:18px;font-weight:900;letter-spacing:-0.03em}
+    .stat span{display:block;margin-top:5px;font-size:12px;font-weight:700;opacity:0.9}
+
+    /* ===== SECTION ===== */
+    section{padding:80px 0}
+    .section-badge{
+      display:inline-block;
+      background:var(--gradient);
+      color:#fff;
+      padding:7px 16px;
+      border-radius:999px;
+      font-size:0.85em;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+    .section-title{
+      font-size:2.45em;
+      font-weight:900;
+      margin-bottom:16px;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:-0.05em;
+    }
+    .section-subtitle{
+      color:var(--gray);
+      font-size:1.1em;
+      margin-bottom:46px;
+      line-height:1.75;
+      font-weight:500;
+      max-width:70ch;
+    }
+
+    /* cards */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:26px;
+      margin-top:24px;
+    }
+    .card{
+      background:#fff;
+      border-radius:20px;
+      padding:34px 28px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
+      transition:all 0.3s ease;
+      border:1px solid rgba(2,6,23,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:'';
+      position:absolute;right:-120px;bottom:-120px;
+      width:260px;height:260px;border-radius:70px;
+      background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.18), transparent 60%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    .card:hover{transform:translateY(-10px);box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+    .icon{
+      width:62px;height:62px;
+      background:var(--gradient);
+      border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.55em;
+      margin-bottom:18px;
+      box-shadow:0 14px 34px rgba(99,102,241,0.18);
+      position:relative;
+      z-index:1;
+    }
+    .card h3{font-size:1.45em;font-weight:900;margin-bottom:12px;letter-spacing:-0.03em;position:relative;z-index:1}
+    .card p{color:var(--gray);line-height:1.75;font-weight:500;position:relative;z-index:1}
+
+    .bullets{margin-top:14px;display:grid;gap:10px}
+    .bullets div{
+      display:flex;gap:10px;align-items:flex-start;
+      color:#475569;font-weight:700;line-height:1.55;
+    }
+    .check{
+      width:20px;height:20px;border-radius:7px;
+      background:rgba(16,185,129,0.12);
+      border:1px solid rgba(16,185,129,0.22);
+      display:grid;place-items:center;
+      color:rgba(16,185,129,0.95);
+      flex:0 0 20px;
+      margin-top:2px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    /* CTA section */
+    .cta-section{
+      background: linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);
+      border-radius:30px;
+      padding:78px 40px;
+      text-align:center;
+      color:#fff;
+      margin: 90px auto;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 24px 80px rgba(99,102,241,0.25);
+    }
+    .cta-section::before{
+      content:'';
+      position:absolute;inset:0;
+      background:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.06"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      opacity:0.55;
+      pointer-events:none;
+    }
+    .cta-title{font-size:2.35em;font-weight:900;margin-bottom:16px;letter-spacing:-0.05em}
+    .cta-subtitle{font-size:1.15em;margin-bottom:30px;opacity:0.95;line-height:1.7}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+    /* FAQ */
+    .faq-container{max-width:900px;margin:20px auto 0}
+    .faq-item{
+      background:#fff;
+      border-radius:16px;
+      margin-bottom:16px;
+      overflow:hidden;
+      box-shadow:0 6px 22px rgba(0,0,0,0.06);
+      border:1px solid rgba(2,6,23,0.06);
+    }
+    .faq-question{
+      padding:22px 24px;
+      font-size:1.1em;
+      font-weight:800;
       cursor:pointer;
-      font-weight: 950;
-      letter-spacing:-.01em;
-      font-size: 14.5px;
-      color: color-mix(in oklab, var(--text) 92%, var(--muted)) !important;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:#fff;
+      transition:all .25s ease;
+      letter-spacing:-0.02em;
     }
-    .q:focus-visible{
-      outline: 2px solid color-mix(in oklab, var(--brand) 55%, transparent);
-      outline-offset: 3px;
-      border-radius: 14px;
+    .faq-question:hover{background:#f8f9ff}
+    .faq-icon{
+      font-size:1.6em;
+      font-weight:400;
+      color:var(--primary);
+      transition:transform .25s ease;
+      line-height:1;
     }
-    .plus{
-      width:36px; height:36px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card2) 66%, transparent);
-      box-shadow: var(--hair);
-      display:grid; place-items:center;
-      font-size: 18px;
-      transition: transform .15s var(--ease);
-      flex:0 0 36px;
-      color: color-mix(in oklab, var(--brand) 82%, var(--text));
-    }
-    .a{
+    .faq-item.active .faq-icon{transform:rotate(45deg)}
+    .faq-answer{
+      padding:0 24px 0;
       max-height:0;
       overflow:hidden;
-      transition: max-height .28s var(--ease);
-      border-top:1px solid var(--line);
-      background: color-mix(in oklab, var(--card2) 60%, transparent);
+      transition:max-height .35s ease,padding .35s ease;
+      color:#64748b;
+      line-height:1.85;
+      font-weight:500;
     }
-    .a p{
-      margin:0;
-      padding: 14px 16px;
-      color: var(--muted);
-      font-weight: 850;
-      line-height: 1.75;
-      font-size: 14.5px;
-    }
-    .qa.open .a{ max-height: 320px; }
-    .qa.open .plus{ transform: rotate(45deg); }
+    .faq-item.active .faq-answer{padding:0 24px 22px;max-height:320px}
 
     /* footer */
-    .footer{
-      padding: 28px 0 74px;
-      border-top:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 34%, transparent);
-      color: var(--muted);
-      font-weight: 850;
-      font-size: 12.5px;
+    footer{
+      background:rgba(10,10,10,0.92);
+      color:#fff;
+      padding:56px 20px 28px;
+      text-align:center;
+      border-top:1px solid rgba(148,163,184,0.12);
+      position:relative;
     }
-    .footRow{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; flex-wrap:wrap;
+    footer::before{
+      content:'';
+      position:absolute;top:0;left:0;width:100%;height:1px;
+      background:linear-gradient(90deg,transparent,#3b82f6,#8b5cf6,#06b6d4,transparent);
     }
-    .footTitle{ color: color-mix(in oklab, var(--text) 92%, var(--muted)); font-weight: 950; }
+    .footer-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:30px;
+      text-align:left;
+      padding:0 20px;
+    }
+    .footer-column h4{font-size:1.15em;margin-bottom:14px;font-weight:900;letter-spacing:-0.02em}
+    .footer-column ul{list-style:none}
+    .footer-column ul li{margin-bottom:10px;color:rgba(255,255,255,0.78);font-weight:600}
+    .footer-column ul li a{color:rgba(255,255,255,0.78)}
+    .footer-column ul li a:hover{color:#fff}
+    .footer-bottom{
+      max-width:1200px;margin:26px auto 0;
+      border-top:1px solid rgba(255,255,255,0.10);
+      padding-top:18px;
+      color:#94a3b8;
+      font-size:0.92rem;
+      letter-spacing:-0.02em;
+      font-weight:500;
+    }
 
-    /* mobile bottom bar */
+    /* Mobile quick CTA */
     .bottomBar{
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 60;
-      padding: 10px 12px;
+      position:fixed;left:0;right:0;bottom:0;
+      z-index:1200;
+      padding:10px 12px;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      border-top:1px solid rgba(15,23,42,0.08);
       display:none;
-      background: color-mix(in oklab, var(--bg0) 70%, transparent);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid var(--line);
     }
-    .bottomBar .in{
-      max-width: var(--max);
-      margin: 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+    .bottomBar .inner{
+      max-width:1200px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
     }
-    .bbTxt{ display:grid; gap:2px; line-height: 1.2; }
-    .bbTxt b{ font-size: 13px; letter-spacing:-.01em; color: color-mix(in oklab, var(--text) 94%, var(--muted)); }
-    .bbTxt span{ font-size: 12px; color: var(--muted); font-weight: 850; }
-    @media (max-width: 900px){ .bottomBar{ display:block; } }
+    .bbTxt{display:flex;flex-direction:column;line-height:1.15}
+    .bbTxt b{font-size:13px;font-weight:900;letter-spacing:-0.02em}
+    .bbTxt span{font-size:12px;color:var(--gray);font-weight:700}
+    @media(max-width:900px){ .bottomBar{display:block} }
 
-    /* reveal */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .70s var(--ease), transform .70s var(--ease);
-      will-change: opacity, transform;
-    }
-    .reveal.show{ opacity:1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .reveal, .btn, .link, .card, .qa, .metric, .iconbtn{ transition:none; }
-      .track{ animation:none; }
-      .banner img{ will-change:auto; }
-    }
+    /* disable select/drag */
+    img{user-drag:none;-webkit-user-drag:none}
   </style>
 </head>
 
-<body>
-  <header class="topbar">
-    <div class="wrap top-in">
-      <div class="brand">
-        <div class="logo" title="로고">
-          <img src="./logo.png" alt="VALARENA 로고" />
+<body oncontextmenu="return false" onkeydown="return !(event.keyCode==123||event.ctrlKey&&event.shiftKey&&event.keyCode==73);">
+
+  <nav id="navbar" class="scrolled">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="발아레나 홈">
+        <div class="brandLogo" title="로고">
+          <img id="logoImg" src="./logo.png" alt="VALARENA 로고" />
         </div>
-        <div class="btxt">
-          <div class="name">발아레나</div>
-          <div class="sub">VALARENA · 내전/토너먼트 · 전원 추첨 이벤트</div>
+        <div class="brandText">
+          <b>발아레나</b>
+          <span>VALARENA · 내전/토너먼트 · 전원 추첨 이벤트</span>
         </div>
+      </a>
+
+      <ul class="nav-links" aria-label="페이지 이동">
+        <li><a href="#about">소개</a></li>
+        <li><a href="#how">참여방법</a></li>
+        <li><a href="#ops">운영방식</a></li>
+        <li><a href="#events">이벤트</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#how">참여 흐름</a>
+        <a class="btn btn-primary" id="joinTop" href="#" target="_blank" rel="noopener">🚀 디스코드 입장</a>
       </div>
+    </div>
+  </nav>
 
-      <nav class="nav" aria-label="페이지 이동">
-        <a class="link" href="#how">참여방법</a>
-        <a class="link" href="#ops">운영방식</a>
-        <a class="link" href="#events">이벤트</a>
-        <a class="link" href="#faq">FAQ</a>
-      </nav>
+  <!-- HERO -->
+  <header id="top">
+    <div class="container">
+      <div class="hero">
+        <div>
+          <div class="hero-badge">
+            <span class="dot"></span>
+            <span><b id="heroBadgeText">매일 내전 · 동시 2~3개 운영</b> · 참여자 전원 랜덤 추첨</span>
+          </div>
 
-      <div class="actions">
-        <button class="iconbtn" id="themeToggle" type="button" aria-label="테마 변경">
-          <svg class="moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a7 7 0 1 0 11.5 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <svg class="sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-        <a class="btn ghost" href="#ops">운영 보기</a>
-        <a class="btn" id="joinTop" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+          <h1 class="hero-title">
+            오늘도 “공정하게”<br />
+            재밌는 내전, <span style="text-decoration:underline; text-underline-offset:6px;">발아레나</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            레디언트부터 브론즈까지 함께 뛰는 발로란트 내전 커뮤니티.<br/>
+            참여는 간단하게, 운영은 공정하게 — 기준은 언제나 공지입니다.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#" id="joinHero" target="_blank" rel="noopener" class="btn btn-white">🚀 디스코드 바로 입장</a>
+            <a href="#how" class="btn btn-outline">참여 방법 보기</a>
+          </div>
+
+          <p style="margin-top:16px; opacity:0.92; font-weight:700; letter-spacing:-0.02em;">
+            ※ 최종 기준: 서버 내부 공지/고정 메시지
+          </p>
+        </div>
+
+        <div class="heroCard" aria-label="배너/운영 요약">
+          <div class="heroBanner">
+            <img id="bannerImg" src="" alt="VALARENA 배너" loading="eager" decoding="async" />
+          </div>
+          <div class="heroCardBody">
+            <div class="heroMiniTitle">
+              <span>오늘 운영 현황</span>
+              <span class="pill"><span class="dot" style="width:8px;height:8px;box-shadow:0 0 0 4px rgba(16,185,129,0.18)"></span> 운영중</span>
+            </div>
+            <div style="opacity:0.9;font-weight:700">업데이트: <span id="dashTime">방금 전</span></div>
+
+            <div class="stats">
+              <div class="stat">
+                <b id="s1">매일</b>
+                <span>내전 운영</span>
+              </div>
+              <div class="stat">
+                <b id="s2">30+</b>
+                <span>일일 참석</span>
+              </div>
+              <div class="stat">
+                <b id="s3">2~3개</b>
+                <span>동시 내전</span>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn btn-primary" id="joinCard" href="#" target="_blank" rel="noopener" style="padding:12px 16px;">입장하고 참여하기</a>
+              <a class="btn btn-ghost" href="#events" style="padding:12px 16px;">이벤트 확인</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero reveal" id="top">
-      <div class="wrap">
-        <div class="heroShell">
-          <div class="heroGrid">
-            <div class="heroLeft">
-              <div class="kickers">
-                <span class="k"><span class="pip"></span> 매일 내전 운영</span>
-                <span class="k"><span class="pip" style="background:linear-gradient(135deg,var(--good),var(--brand))"></span> 참여자 전원 랜덤 추첨</span>
-                <span class="k"><span class="pip" style="background:linear-gradient(135deg,var(--brand2),var(--brand))"></span> 밸런스 매칭 지향</span>
-              </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-badge">ABOUT</div>
+      <h2 class="section-title">발아레나는 “참여가 쉬운” 내전 구조</h2>
+      <p class="section-subtitle">
+        한쪽이 압도해 재미가 깨지는 경기를 줄이고,<br/>
+        처음 온 사람도 바로 참여할 수 있는 구조를 만드는 것이 목표입니다.<br/>
+        운영은 빠르게, 기준은 공지로 명확하게 가져갑니다.
+      </p>
 
-              <h1 class="hTitle">
-                오늘도 “공정하게”<br/>
-                <span class="accent">재밌는 내전</span> 발아레나
-              </h1>
-
-              <p class="hSub">
-                레디언트/불멸부터 브론즈/실버까지 함께 뛰는 발로란트 내전 커뮤니티.<br/>
-                들어오면 편한 구조(참여 절차·팀 구성·이벤트)를 꾸준히 굴립니다.
-              </p>
-
-              <div class="ctaRow">
-                <a class="btn" id="joinHero" href="#" target="_blank" rel="noopener">🚀 디스코드 바로 입장</a>
-                <a class="btn ghost" href="#how">참여 흐름 보기</a>
-              </div>
-
-              <div class="metaRow">
-                <span>※ 최종 기준: 서버 내부 공지</span>
-                <span>·</span>
-                <span></span>
-              </div>
-            </div>
-
-            <div class="heroRight" aria-label="발아레나 배너">
-              <span class="heroDivider" aria-hidden="true"></span>
-
-              <div class="banner" id="bannerWrap">
-                <img id="bannerImg" src="" alt="VALARENA 배너" loading="eager" decoding="async" />
-                <div class="watermark" aria-hidden="true"><b>VALARENA</b></div>
-              </div>
-
-              <div class="floatPanel" aria-label="운영 요약">
-                <div class="fpTop">
-                  <div class="t">
-                    <b>오늘 운영 현황</b>
-                    <span id="dashSub">업데이트: 방금 전</span>
-                  </div>
-                  <span class="statusPill"><span class="liveDot"></span> 운영중</span>
-                </div>
-
-                <div class="fpGrid">
-                  <div class="metric">
-                    <b id="stat1">매일</b>
-                    <span>내전 운영</span>
-                  </div>
-                  <div class="metric">
-                    <b id="stat2">30+</b>
-                    <span>일일 참석</span>
-                  </div>
-                  <div class="metric">
-                    <b id="stat3">2~3개</b>
-                    <span>동시 내전</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🎯</div>
+          <h3>밸런스 매칭 지향</h3>
+          <p>티어/역할 흐름을 고려해 팀을 구성하고, 매치 품질이 무너지지 않게 운영합니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>한쪽만 압도하는 판 최소화</div>
+            <div><span class="check">✓</span>팀플/콜 연습에 최적</div>
+            <div><span class="check">✓</span>분쟁 리스크 낮춤</div>
           </div>
+        </div>
 
-          <!-- MARQUEE -->
-          <div class="marquee" aria-hidden="true">
-            <div class="track">
-              <span class="chip"><i></i> 매일 내전</span>
-              <span class="chip"><i></i> 2~3개 동시 운영</span>
-              <span class="chip"><i></i> 전원 랜덤 추첨</span>
-              <span class="chip"><i></i> 밸런스 매칭</span>
-              <span class="chip"><i></i> 초보도 참여 쉬움</span>
-              <span class="chip"><i></i> 팀플/콜 연습</span>
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>동시 2~3개 내전 운영</h3>
+          <p>인원이 몰려도 병목이 덜하도록 “동시 진행”으로 대기 시간을 줄입니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>수용량 확보 (동시 4~6팀)</div>
+            <div><span class="check">✓</span>흐름 끊김 최소화</div>
+            <div><span class="check">✓</span>기본은 매일 운영</div>
+          </div>
+        </div>
 
-              <span class="chip"><i></i> 매일 내전</span>
-              <span class="chip"><i></i> 2~3개 동시 운영</span>
-              <span class="chip"><i></i> 전원 랜덤 추첨</span>
-              <span class="chip"><i></i> 밸런스 매칭</span>
-              <span class="chip"><i></i> 초보도 참여 쉬움</span>
-              <span class="chip"><i></i> 팀플/콜 연습</span>
-            </div>
+        <div class="card">
+          <div class="icon">🎁</div>
+          <h3>참여자 전원 랜덤 추첨</h3>
+          <p>“잘해야 받는” 이벤트가 아니라 “참여하면 공평”한 구조로 부담을 낮춥니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>초보도 참여 장벽 ↓</div>
+            <div><span class="check">✓</span>누구나 기회 동일</div>
+            <div><span class="check">✓</span>꾸준한 운영 이력</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- HOW -->
-    <section id="how" class="reveal">
-      <div class="wrap">
-        <div class="head">
-          <h2>처음 온 사람도, 바로 참여</h2>
-          <p>누구나 간편 참여</p>
+  <!-- HOW -->
+  <section id="how">
+    <div class="container">
+      <div class="section-badge">HOW TO JOIN</div>
+      <h2 class="section-title">처음 온 사람도, 바로 참여</h2>
+      <p class="section-subtitle">
+        복잡한 신청서 없이, 공지대로만 따라오면 바로 참여됩니다.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">①</div>
+          <h3>입장 후 자유롭게 둘러보기</h3>
+          <p>별도의 절차 없이 서버 구조와 공지를 천천히 확인해 보세요.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>처음 와도 부담 없이</div>
+            <div><span class="check">✓</span>공지/내전 채널 바로 확인 가능</div>
+          </div>
         </div>
 
-        <div class="grid">
-          <div class="card span-7">
-            <span class="kbadge"><span class="box">01</span> 입장 후 30초</span>
-            <h3>닉네임/인증 → 참여 버튼만 누르면 끝</h3>
-            <p>복잡한 신청서/추가 절차 최소화. 공지대로만 따라오면 바로 참여됩니다.</p>
-            <ul class="list">
-              <li><span class="chk">✓</span>초보도 길 잃지 않게</li>
-              <li><span class="chk">✓</span>메시지 기준으로 정리</li>
-              <li><span class="chk">✓</span>운영진 문의 루트 명확</li>
-            </ul>
+        <div class="card">
+          <div class="icon">②</div>
+          <h3>참석 버튼 클릭</h3>
+          <p>내전 안내 채널에서 안내된 버튼/양식대로 참여를 표시합니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>절차 최소화</div>
+            <div><span class="check">✓</span>공지 기준으로 통일</div>
           </div>
+        </div>
 
-          <div class="card span-5">
-            <span class="kbadge"><span class="box">02</span> 팀 배정</span>
-            <h3>밸런스가 먼저인 내전</h3>
-            <p>한쪽이 압도해 재미가 깨지는 판을 줄이는 방향으로 팀을 구성합니다.</p>
-            <ul class="list">
-              <li><span class="chk">✓</span>티어/역할 흐름 고려</li>
-              <li><span class="chk">✓</span>매치 품질 유지</li>
-              <li><span class="chk">✓</span>분쟁 리스크 감소</li>
-            </ul>
-          </div>
-
-          <div class="card span-6">
-            <span class="kbadge"><span class="box">03</span> 이벤트</span>
-            <h3>“잘해야 받는” 구조가 아님</h3>
-            <p>참여자 전원 포함 랜덤 추첨이라 실력 부담이 낮고, 참여 자체가 편합니다.</p>
-          </div>
-
-          <div class="card span-6">
-            <span class="kbadge"><span class="box">04</span> 추천 대상</span>
-            <h3>랭크 스트레스 없이 팀플/콜 연습</h3>
-            <p>혼자 오든 친구랑 오든, “매일 열리는 내전”에서 편하게 연습할 수 있어요.</p>
+        <div class="card">
+          <div class="icon">③</div>
+          <h3>팀 배정 → 내전 시작</h3>
+          <p>밸런스 기준으로 팀을 구성하고, 진행 안내에 따라 바로 시작합니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>팀플/콜 연습 최적</div>
+            <div><span class="check">✓</span>쾌적한 진행 흐름</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- OPS -->
-    <section id="ops" class="reveal">
-      <div class="wrap">
-        <div class="head">
-          <h2>운영 방식</h2>
-          <p>동시 운영 + 밸런스 + 공지 최종</p>
+      <div class="cta-section" style="margin-top:60px" aria-label="중간 CTA">
+        <h2 class="cta-title">오늘 내전, 지금 바로 들어와서 참여</h2>
+        <p class="cta-subtitle">
+          입장 후 공지대로만 따라오면 바로 참여됩니다.<br/>
+          (운영 정책/규칙 최종 기준: 서버 공지)
+        </p>
+        <div class="cta-actions">
+          <a href="#" id="joinHow" target="_blank" rel="noopener" class="btn btn-white">🚀 디스코드 입장</a>
+          <a href="#faq" class="btn btn-outline">FAQ 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPS -->
+  <section id="ops">
+    <div class="container">
+      <div class="section-badge">OPERATIONS</div>
+      <h2 class="section-title">운영 방식 (공지 최종)</h2>
+      <p class="section-subtitle">
+        운영 정책은 고정/공지 기준으로 업데이트됩니다. 분쟁/신고는 증거와 함께 전달해 주세요.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🧭</div>
+          <h3>동시 운영으로 “병목” 줄이기</h3>
+          <p>인원이 몰려도 대기 시간이 길어지지 않게 2~3개 내전을 동시 진행합니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>대기/흐름 끊김 최소화</div>
+            <div><span class="check">✓</span>수용량 확보</div>
+          </div>
         </div>
 
-        <div class="grid">
-          <div class="card span-8">
-            <span class="kbadge"><span class="box">운영</span> 동시 2~3개</span>
-            <h3>인원이 몰려도 “병목”이 덜하게</h3>
-            <p>동시 내전 운영으로 대기/흐름 끊김을 줄이고, 매일 참여하는 사람도 편하게 만들었습니다.</p>
-            <ul class="list">
-              <li><span class="chk">✓</span>수용량 확보(동시 4~6팀)</li>
-              <li><span class="chk">✓</span>참여 흐름 단순화</li>
-              <li><span class="chk">✓</span>기본은 “매일 운영”</li>
-            </ul>
-          </div>
-
-          <div class="card span-4">
-            <span class="kbadge"><span class="box">규칙</span> 최종 기준</span>
-            <h3>공지/고정이 최종</h3>
-            <p>운영 정책은 서버 공지가 최종 기준입니다. 분쟁/신고는 증거와 함께 전달해 주세요.</p>
+        <div class="card">
+          <div class="icon">⚖️</div>
+          <h3>밸런스 기준으로 팀 구성</h3>
+          <p>티어/역할 흐름 중심으로 팀을 구성해 매치 품질을 유지합니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>한쪽 압도 매치 감소</div>
+            <div><span class="check">✓</span>지속 가능한 운영</div>
           </div>
         </div>
 
-        <div style="margin-top:12px" class="ctaBand">
-          <div>
-            <b>오늘 참여를 원하시는 분은 ‘입장’부터 진행해 주세요.</b>
-            <span>입장 후 안내되는 참여 방법을 따라주시면 바로 참여 가능합니다.</span>
-          </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn ghost" href="#faq">FAQ 보기</a>
-            <a class="btn" id="joinOps" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+        <div class="card">
+          <div class="icon">📌</div>
+          <h3>공지/고정 메시지가 최종</h3>
+          <p>기준이 헷갈릴 땐 “공지/고정”을 최우선으로 확인해 주세요.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>룰/절차 명확</div>
+            <div><span class="check">✓</span>운영 변경 즉시 반영</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- EVENTS -->
-    <section id="events" class="reveal">
-      <div class="wrap">
-        <div class="head">
-          <h2>이벤트 / 지급 이력</h2>
-          <p>단발 말고, 꾸준히</p>
-        </div>
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="container">
+      <div class="section-badge">EVENTS</div>
+      <h2 class="section-title">이벤트 / 지급 이력</h2>
+      <p class="section-subtitle">
+        단발이 아니라, 꾸준히 이어온 운영. (지급 예시는 변동될 수 있으며, 최종 공지는 서버 기준)
+      </p>
 
-        <div class="grid">
-          <div class="card span-6">
-            <span class="kbadge"><span class="box">🎁</span> 지급 예시</span>
-            <h3>꾸준히 이어온 운영 이력</h3>
-            <p>참여자 전원 포함 랜덤 추첨 방식으로 “누구나 기회”가 생기게 운영합니다.</p>
-            <ul class="list">
-              <li><span class="chk">✓</span>아티산 하야테 오츠 마우스패드</li>
-              <li><span class="chk">✓</span>Razer Viper V3 마우스</li>
-              <li><span class="chk">✓</span>레이저 헤드셋</li>
-              <li><span class="chk">✓</span>3,650 ~ 5,350 VP</li>
-            </ul>
-          </div>
-
-          <div class="card span-6">
-            <span class="kbadge"><span class="box">✨</span> 포인트</span>
-            <h3>실력 부담 낮추고, 참여 장벽 낮추기</h3>
-            <p>“잘해야 받는 이벤트”가 아니라 “참여하면 공평”한 구조가 핵심이에요.</p>
-            <ul class="list">
-              <li><span class="chk">✓</span>처음 온 사람도 부담 ↓</li>
-              <li><span class="chk">✓</span>매일 참여로 자연스럽게 성장</li>
-              <li><span class="chk">✓</span>밸런스 내전 + 이벤트 재미</li>
-            </ul>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🎁</div>
+          <h3>지급 예시</h3>
+          <p>참여자 전원 포함 랜덤 추첨 방식으로 “누구나 기회”가 생기게 운영합니다.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>아티산 하야테 오츠 마우스패드</div>
+            <div><span class="check">✓</span>Razer Viper V3 마우스</div>
+            <div><span class="check">✓</span>레이저 헤드셋</div>
+            <div><span class="check">✓</span>3,650 ~ 5,350 VP</div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="reveal">
-      <div class="wrap">
-        <div class="head">
-          <h2>FAQ</h2>
-          <p>처음 오는 사람이 제일 많이 묻는 것만</p>
+        <div class="card">
+          <div class="icon">✨</div>
+          <h3>핵심 포인트</h3>
+          <p>“실력 부담”을 낮추고, “참여 자체”가 편하게 돌아가게 만드는 구조가 핵심이에요.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>처음 온 사람도 부담 ↓</div>
+            <div><span class="check">✓</span>매일 참여로 자연스럽게 성장</div>
+            <div><span class="check">✓</span>밸런스 내전 + 이벤트 재미</div>
+          </div>
         </div>
 
-        <div class="faq">
-          <div class="qa">
-            <button class="q" type="button">
-              Q. 내전은 진짜 매일 열리나요?
-              <span class="plus">+</span>
-            </button>
-            <div class="a">
-              <p>네. 기본적으로 <b>매일 운영</b>을 전제로 합니다. 상황에 따라 <b>동시 2개~3개</b>까지 열어 수용량을 확보합니다.</p>
-            </div>
-          </div>
-
-          <div class="qa">
-            <button class="q" type="button">
-              Q. 고티어만 유리한 구조 아닌가요?
-              <span class="plus">+</span>
-            </button>
-            <div class="a">
-              <p>아닙니다. 이벤트는 <b>참여자 전원 포함 랜덤 추첨</b>이라 실력 부담 없이 공평하게 진행됩니다.</p>
-            </div>
-          </div>
-
-          <div class="qa">
-            <button class="q" type="button">
-              Q. 팀 밸런스는 어떻게 맞추나요?
-              <span class="plus">+</span>
-            </button>
-            <div class="a">
-              <p>티어/역할 흐름 기반으로 팀을 구성해 <b>한쪽만 압도</b>되는 매치를 줄이도록 운영합니다. (세부 기준은 공지가 최종)</p>
-            </div>
-          </div>
-
-          <div class="qa">
-            <button class="q" type="button">
-              Q. 처음인데 바로 참여해도 되나요?
-              <span class="plus">+</span>
-            </button>
-            <div class="a">
-              <p>네. 안내가 정리되어 있어 공지대로만 따라오면 바로 참여 가능합니다.</p>
-            </div>
+        <div class="card">
+          <div class="icon">🗓️</div>
+          <h3>일정/규칙은 공지로</h3>
+          <p>이벤트/운영 시간/참여 규칙은 서버 공지에서 가장 최신 버전을 확인해 주세요.</p>
+          <div class="bullets">
+            <div><span class="check">✓</span>변동 사항 즉시 공지</div>
+            <div><span class="check">✓</span>최신 정보 1곳으로 통일</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="wrap footRow">
-        <div>
-          <div class="footTitle">발아레나 | VALARENA</div>
-          <div style="margin-top:6px;">© <span id="year"></span> VALARENA. All rights reserved.</div>
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-badge">FAQ</div>
+      <h2 class="section-title">자주 묻는 질문</h2>
+      <p class="section-subtitle">처음 오는 사람이 제일 많이 묻는 것만 모았어요.</p>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>내전은 진짜 매일 열리나요?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            네. 기본적으로 <b>매일 운영</b>을 전제로 합니다. 상황에 따라 <b>동시 2개~3개</b>까지 열어 수용량을 확보합니다.
+          </div>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="link" href="#how">참여방법</a>
-          <a class="link" href="#faq">FAQ</a>
-          <a class="btn" id="joinFooterBtn" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>고티어만 유리한 구조 아닌가요?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            아닙니다. 이벤트는 <b>참여자 전원 포함 랜덤 추첨</b>이라 실력 부담 없이 공평하게 진행됩니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>팀 밸런스는 어떻게 맞추나요?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            티어/역할 흐름 기반으로 팀을 구성해 <b>한쪽만 압도</b>되는 매치를 줄이도록 운영합니다. (세부 기준은 공지가 최종)
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>처음인데 바로 참여해도 되나요?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            네. 안내가 정리되어 있어 공지대로만 따라오면 바로 참여 가능합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>규칙 위반/분쟁은 어디로 신고하나요?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            서버에서 안내하는 운영진 문의 루트로 <b>증거(스크린샷/클립)</b>와 함께 전달해 주세요. 최종 처리 기준은 공지에 따릅니다.
+          </div>
         </div>
       </div>
-    </footer>
-  </main>
 
-  <!-- mobile bottom bar -->
+      <div class="cta-section" style="margin-top:60px" aria-label="하단 CTA">
+        <h2 class="cta-title">발아레나에서 매일 내전 참여하기</h2>
+        <p class="cta-subtitle">
+          들어오면 바로 참여할 수 있게 안내를 정리해뒀어요.<br/>
+          지금 입장해서 공지대로 진행하면 끝.
+        </p>
+        <div class="cta-actions">
+          <a href="#" id="joinFaq" target="_blank" rel="noopener" class="btn btn-white">🚀 디스코드 입장</a>
+          <a href="#top" class="btn btn-outline">맨 위로</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h4>발아레나 | VALARENA</h4>
+        <ul>
+          <li>발로란트 내전/토너먼트 커뮤니티</li>
+          <li>매일 내전 · 동시 2~3개 운영</li>
+          <li>참여자 전원 랜덤 추첨 이벤트</li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="#how">참여방법</a></li>
+          <li><a href="#ops">운영방식</a></li>
+          <li><a href="#events">이벤트</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>입장</h4>
+        <ul>
+          <li><a id="joinFooter" href="#" target="_blank" rel="noopener">디스코드 초대 링크</a></li>
+          <li style="color:rgba(255,255,255,0.65);">최종 기준: 서버 공지/고정</li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>운영 안내</h4>
+        <ul>
+          <li>기본: 매일 운영</li>
+          <li>동시: 2~3개 내전</li>
+          <li>변동: 서버 공지 확인</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> VALARENA. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Mobile bottom CTA -->
   <div class="bottomBar" role="region" aria-label="모바일 빠른 입장">
-    <div class="in">
+    <div class="inner">
       <div class="bbTxt">
         <b>오늘 내전 참여하기</b>
         <span>전원 추첨 · 밸런스 매칭</span>
       </div>
-      <a class="btn" id="joinBottom" href="#" target="_blank" rel="noopener" style="padding:12px 14px;">입장</a>
+      <a class="btn btn-primary" id="joinBottom" href="#" target="_blank" rel="noopener" style="padding:12px 16px;">입장</a>
     </div>
   </div>
 
@@ -1038,250 +887,83 @@
     // ✅ 여기만 바꾸면 전체 반영
     const CONFIG = {
       inviteLink: "https://discord.gg/V-ARENA",
-      banner: "https://media.discordapp.net/attachments/1441335254425272321/1456547322262720694/valarena.jpg?ex=699df9a6&is=699ca826&hm=fa1918e56c034ca628b74906b0255ff484887377e28859fce5165c2bf65b8620&=&format=webp&width=1360&height=768",
+      banner: "https://media.discordapp.net/attachments/1441335254425272321/1456547322262720694/valarena.jpg?format=webp&width=1360&height=768",
+      logo: "./logo.png",
       stats: { s1: "매일", s2: "30+", s3: "2~3개" },
-      defaultTheme: "dark" // "dark" | "light" | "auto"
+      heroBadgeText: "매일 내전 · 동시 2~3개 운영"
     };
 
-    // ---- Helpers ----
-    const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
-    const rgbToHex = (r,g,b) => "#" + [r,g,b].map(v => v.toString(16).padStart(2,"0")).join("");
-    const lerp = (a,b,t) => a + (b-a)*t;
+    // Navbar shrink
+    (function(){
+      window.addEventListener('scroll', function(){
+        const navbar = document.getElementById('navbar');
+        if(window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+      }, { passive:true });
+    })();
 
-    function adjustColor({r,g,b}, amt){ // amt: -1..+1
-      // simple lift/shadow adjustment
-      const t = amt >= 0 ? amt : -amt;
-      if(amt >= 0){
-        return { r: Math.round(lerp(r, 255, t)), g: Math.round(lerp(g, 255, t)), b: Math.round(lerp(b, 255, t)) };
-      } else {
-        return { r: Math.round(lerp(r, 0, t)), g: Math.round(lerp(g, 0, t)), b: Math.round(lerp(b, 0, t)) };
-      }
-    }
-
-    function isNearGray(r,g,b){
-      const mx = Math.max(r,g,b), mn = Math.min(r,g,b);
-      return (mx - mn) < 22;
-    }
-
-    async function fetchAsBlob(url){
-      const res = await fetch(url, { mode:"cors" });
-      if(!res.ok) throw new Error("fetch failed");
-      return await res.blob();
-    }
-
-    async function pickBrandColorsFromImage(url){
-      // NOTE: if CDN blocks CORS, this will fail gracefully and keep default colors.
-      const blob = await fetchAsBlob(url);
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      const objUrl = URL.createObjectURL(blob);
-
-      const p = new Promise((resolve, reject)=>{
-        img.onload = ()=> resolve(img);
-        img.onerror = reject;
-        img.src = objUrl;
-      });
-      const loaded = await p;
-
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-
-      // downsample
-      const w = 96, h = Math.round(96 * (loaded.height / loaded.width));
-      canvas.width = w; canvas.height = h;
-      ctx.drawImage(loaded, 0, 0, w, h);
-
-      const data = ctx.getImageData(0,0,w,h).data;
-
-      // Find 2 accent-ish colors: prefer saturated-ish pixels, ignore near-gray, ignore very dark
-      const buckets = new Map(); // key -> score
-      for(let i=0;i<data.length;i+=4){
-        const r=data[i], g=data[i+1], b=data[i+2], a=data[i+3];
-        if(a < 220) continue;
-        if(isNearGray(r,g,b)) continue;
-        const lum = 0.2126*r + 0.7152*g + 0.0722*b;
-        if(lum < 35) continue; // too dark
-
-        // quantize
-        const qr = Math.round(r/16)*16;
-        const qg = Math.round(g/16)*16;
-        const qb = Math.round(b/16)*16;
-        const key = `${qr},${qg},${qb}`;
-
-        // "saturation proxy" = channel spread
-        const sat = Math.max(qr,qg,qb) - Math.min(qr,qg,qb);
-        // prefer mid-high lum + sat
-        const score = sat*1.2 + (lum*0.15);
-
-        buckets.set(key, (buckets.get(key) || 0) + score);
-      }
-
-      URL.revokeObjectURL(objUrl);
-
-      const sorted = Array.from(buckets.entries()).sort((a,b)=>b[1]-a[1]).slice(0, 12);
-      if(sorted.length < 2) throw new Error("not enough color data");
-
-      // pick first as brand; second far enough from first
-      const parseKey = (k)=> {
-        const [r,g,b]=k.split(",").map(Number);
-        return {r,g,b};
-      };
-      const c1 = parseKey(sorted[0][0]);
-      let c2 = null;
-
-      for(let i=1;i<sorted.length;i++){
-        const c = parseKey(sorted[i][0]);
-        const dist = Math.abs(c.r-c1.r)+Math.abs(c.g-c1.g)+Math.abs(c.b-c1.b);
-        if(dist > 120){ c2 = c; break; }
-      }
-      if(!c2) c2 = parseKey(sorted[Math.min(3, sorted.length-1)][0]);
-
-      // ensure accents are vivid enough
-      const brand = adjustColor(c1, -0.06);  // slightly deepen
-      const brand2 = adjustColor(c2, -0.02);
-
-      return { brand: rgbToHex(brand.r, brand.g, brand.b), brand2: rgbToHex(brand2.r, brand2.g, brand2.b) };
-    }
-
-    function applyBrandColors({brand, brand2}){
-      const root = document.documentElement;
-      root.style.setProperty("--brand", brand);
-      root.style.setProperty("--brand2", brand2);
-
-      // update theme-color meta based on theme
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if(meta){
-        meta.setAttribute("content", document.body.classList.contains("light") ? "#6D28D9" : "#0B0D16");
-      }
-    }
-
-    // ---- Setup banner + links + stats ----
-    const bannerImg = document.getElementById("bannerImg");
-    if (bannerImg) bannerImg.src = CONFIG.banner;
-
-    ["joinTop","joinHero","joinOps","joinFooterBtn","joinBottom"].forEach(id=>{
-      const el = document.getElementById(id);
-      if(el) el.href = CONFIG.inviteLink;
-    });
-
-    document.getElementById("stat1").textContent = CONFIG.stats.s1;
-    document.getElementById("stat2").textContent = CONFIG.stats.s2;
-    document.getElementById("stat3").textContent = CONFIG.stats.s3;
-
-    const dashSub = document.getElementById("dashSub");
-    if(dashSub){
-      const d = new Date();
-      dashSub.textContent = `업데이트: ${d.getHours().toString().padStart(2,"0")}:${d.getMinutes().toString().padStart(2,"0")}`;
-    }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ---- FAQ accordion ----
-    document.querySelectorAll(".qa .q").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const qa = btn.closest(".qa");
-        const isOpen = qa.classList.contains("open");
-        document.querySelectorAll(".qa").forEach(x=>x.classList.remove("open"));
-        if(!isOpen) qa.classList.add("open");
-      });
-    });
-
-    // ---- reveal on scroll ----
-    const revealEls = Array.from(document.querySelectorAll(".reveal"));
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add("show");
-          io.unobserve(e.target);
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(!href || href === "#") return;
+        const target = document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior:'smooth', block:'start' });
         }
       });
-    }, { threshold: 0.14 });
-    revealEls.forEach(el=>io.observe(el));
-
-    // ---- Theme toggle ----
-    const body = document.body;
-    const toggleBtn = document.getElementById("themeToggle");
-    const key = "valarena_theme";
-
-    const getSystem = () =>
-      window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-
-    const setThemeMeta = (t)=>{
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if(meta){
-        meta.setAttribute("content", t === "light" ? "#6D28D9" : "#0B0D16");
-      }
-    };
-
-    const applyTheme = (t)=>{
-      if(t === "light") body.classList.add("light");
-      else body.classList.remove("light");
-      setThemeMeta(t);
-    };
-
-    const initTheme = ()=>{
-      let saved = localStorage.getItem(key);
-      if(!saved){
-        saved = (CONFIG.defaultTheme === "auto") ? getSystem() : CONFIG.defaultTheme;
-      }
-      applyTheme(saved);
-      return saved;
-    };
-
-    let currentTheme = initTheme();
-
-    if(CONFIG.defaultTheme === "auto" && window.matchMedia){
-      const mq = window.matchMedia("(prefers-color-scheme: light)");
-      mq.addEventListener?.("change", ()=>{
-        if(!localStorage.getItem(key)){
-          currentTheme = getSystem();
-          applyTheme(currentTheme);
-        }
-      });
-    }
-
-    toggleBtn?.addEventListener("click", ()=>{
-      currentTheme = body.classList.contains("light") ? "dark" : "light";
-      localStorage.setItem(key, currentTheme);
-      applyTheme(currentTheme);
     });
 
-    // ---- Parallax (subtle) ----
-    (function parallaxBanner(){
-      const img = document.getElementById("bannerImg");
-      const wrap = document.getElementById("bannerWrap");
-      if(!img || !wrap) return;
-
-      let raf = 0;
-      const onScroll = ()=>{
-        if(raf) return;
-        raf = requestAnimationFrame(()=>{
-          raf = 0;
-          const rect = wrap.getBoundingClientRect();
-          const vh = window.innerHeight || 1;
-          const visible = clamp(1 - (Math.abs(rect.top + rect.height/2 - vh/2) / (vh/2 + rect.height/2)), 0, 1);
-          const offset = (rect.top / vh) * -18; // subtle
-          img.style.transform = `translate3d(0, ${offset}px, 0) scale(${1.05 + (1-visible)*0.01})`;
+    // FAQ accordion
+    document.addEventListener('DOMContentLoaded', function(){
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item=>{
+        const q = item.querySelector('.faq-question');
+        q.addEventListener('click', function(){
+          const isActive = item.classList.contains('active');
+          faqItems.forEach(x=>x.classList.remove('active'));
+          if(!isActive) item.classList.add('active');
         });
-      };
+      });
+    });
 
-      window.addEventListener("scroll", onScroll, { passive:true });
-      window.addEventListener("resize", onScroll);
-      onScroll();
+    // Apply config
+    (function applyConfig(){
+      const banner = document.getElementById("bannerImg");
+      if(banner) banner.src = CONFIG.banner;
+
+      const logo = document.getElementById("logoImg");
+      if(logo) logo.src = CONFIG.logo;
+
+      const ids = ["joinTop","joinHero","joinCard","joinHow","joinFaq","joinFooter","joinBottom"];
+      ids.forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.href = CONFIG.inviteLink;
+      });
+
+      document.getElementById("s1").textContent = CONFIG.stats.s1;
+      document.getElementById("s2").textContent = CONFIG.stats.s2;
+      document.getElementById("s3").textContent = CONFIG.stats.s3;
+
+      const heroBadge = document.getElementById("heroBadgeText");
+      if(heroBadge) heroBadge.textContent = CONFIG.heroBadgeText;
+
+      // time
+      const d = new Date();
+      const hh = String(d.getHours()).padStart(2,"0");
+      const mm = String(d.getMinutes()).padStart(2,"0");
+      const dash = document.getElementById("dashTime");
+      if(dash) dash.textContent = `${hh}:${mm}`;
+
+      // year
+      document.getElementById("year").textContent = new Date().getFullYear();
     })();
 
-    // ---- Banner color-pick (auto brand colors) ----
-    (async function autoBrand(){
-      try{
-        const colors = await pickBrandColorsFromImage(CONFIG.banner);
-        applyBrandColors(colors);
-      }catch(e){
-        // If CORS blocks canvas read, we keep the default brand colors.
-        // (No console spam on purpose)
-      }
-    })();
+    // Disable drag/select
+    document.addEventListener('dragstart', e=>e.preventDefault());
+    document.addEventListener('selectstart', e=>e.preventDefault());
   </script>
+
 </body>
 </html>
-
-
