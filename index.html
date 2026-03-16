@@ -2,969 +2,2220 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta name="theme-color" content="#0B0D16" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090b14" />
   <title>발아레나 | VALARENA</title>
-  <meta name="description" content="발로란트 내전/토너먼트 중심 디스코드 커뮤니티. 매일 내전, 2~3개 동시 진행, 참여자 전원 랜덤 추첨 이벤트." />
+  <meta name="description" content="발로란트 내전/토너먼트 중심 디스코드 커뮤니티. 매일 내전, 동시 운영, 밸런스 매칭, 참여자 전원 랜덤 추첨 이벤트." />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="VALARENA | 발로란트 내전 플랫폼">
-  <meta property="og:description" content="매일 열리는 발로란트 내전 · 밸런스 매칭 · 참여자 전원 랜덤 추첨 이벤트">
-  <meta property="og:url" content="https://www.valarena.kro.kr/">
-  <meta property="og:image" content="https://media.discordapp.net/attachments/1441335254425272321/1456547322262720694/valarena.jpg">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="VALARENA | 발로란트 내전 플랫폼" />
+  <meta property="og:description" content="매일 열리는 발로란트 내전 · 밸런스 매칭 · 참여자 전원 랜덤 추첨 이벤트" />
+  <meta property="og:url" content="https://www.valarena.kro.kr/" />
+  <meta property="og:image" content="https://www.valarena.kro.kr/banner.png" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="VALARENA | 발로란트 내전 플랫폼">
-  <meta name="twitter:description" content="매일 열리는 발로란트 내전 · 밸런스 매칭 · 참여자 전원 랜덤 추첨 이벤트">
-  <meta name="twitter:image" content="https://media.discordapp.net/attachments/1441335254425272321/1456547322262720694/valarena.jpg">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VALARENA | 발로란트 내전 플랫폼" />
+  <meta name="twitter:description" content="매일 열리는 발로란트 내전 · 밸런스 매칭 · 참여자 전원 랜덤 추첨 이벤트" />
+  <meta name="twitter:image" content="https://www.valarena.kro.kr/banner.png" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="./banner.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --primary:#6366f1;
-      --primary-dark:#4f46e5;
-      --secondary:#14b8a6;
-      --dark:#0f172a;
-      --light:#f8fafc;
-      --gray:#64748b;
-      --success:#10b981;
-      --warning:#f59e0b;
-      --gradient:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      --hero-grad: linear-gradient(135deg,#3b82f6 0%,#8b5cf6 40%,#06b6d4 100%);
-    }
-
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
-      background:var(--light);
-      color:var(--dark);
-      overflow-x:hidden;
-      user-select:none;
-    }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-
-    /* ===== NAV ===== */
-    nav{
-      position:fixed;top:0;left:0;right:0;
-      background:rgba(255,255,255,0.95);
-      backdrop-filter:blur(10px);
-      z-index:1000;
-      padding:15px 0;
-      box-shadow:0 2px 20px rgba(0,0,0,0.08);
-      transition:all 0.3s ease;
-      border-bottom:1px solid rgba(15,23,42,0.06);
-    }
-    nav.scrolled{padding:10px 0;background:rgba(255,255,255,0.98)}
-    .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{
-      display:flex;align-items:center;gap:12px;
-      min-width:220px;
-    }
-    .brandLogo{
-      width:40px;height:40px;border-radius:14px;
-      overflow:hidden;
-      background:var(--gradient);
-      box-shadow:0 10px 30px rgba(99,102,241,0.25);
-      flex:0 0 40px;
-      display:grid;place-items:center;
-    }
-    .brandLogo img{width:100%;height:100%;object-fit:cover;display:block}
-    .brandText{display:flex;flex-direction:column;line-height:1.05}
-    .brandText b{font-size:15px;font-weight:900;letter-spacing:-0.04em}
-    .brandText span{margin-top:4px;font-size:12px;font-weight:600;color:var(--gray);letter-spacing:-0.02em}
-
-    .nav-links{display:flex;gap:26px;list-style:none;align-items:center}
-    .nav-links a{
-      color:var(--gray);
-      font-weight:600;
-      transition:color .25s ease, transform .25s ease;
-      letter-spacing:-0.02em;
-    }
-    .nav-links a:hover{color:var(--primary);transform:translateY(-1px)}
-
-    .nav-actions{display:flex;gap:10px;align-items:center;justify-content:flex-end;min-width:220px}
-    .btn{
-      padding:12px 18px;border-radius:999px;
-      font-size:14px;font-weight:800;
-      border:none;cursor:pointer;
-      transition:all .25s ease;
-      display:inline-flex;align-items:center;gap:8px;
-      letter-spacing:-0.02em;
-    }
-    .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 12px 30px rgba(99,102,241,0.22)}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(99,102,241,0.30)}
-    .btn-ghost{
-      background:#fff;color:var(--dark);
-      border:1px solid rgba(15,23,42,0.10);
-    }
-    .btn-ghost:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.08)}
-
-    @media(max-width:900px){
-      .nav-links{display:none}
-      .brand,.nav-actions{min-width:auto}
+    :root {
+      --bg: #070912;
+      --bg-soft: #0d1120;
+      --panel: rgba(16, 22, 41, 0.7);
+      --panel-strong: rgba(14, 18, 33, 0.92);
+      --card: rgba(255, 255, 255, 0.05);
+      --card-hover: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.10);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #eff4ff;
+      --muted: #9aa6c7;
+      --muted-2: #7d88a8;
+      --primary: #7c5cff;
+      --primary-2: #52b3ff;
+      --accent: #1ee7b6;
+      --danger: #ff5d8f;
+      --warning: #ffc857;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --gradient: linear-gradient(135deg, #7c5cff 0%, #4d9cff 50%, #22d3ee 100%);
+      --gradient-2: linear-gradient(135deg, rgba(124, 92, 255, 0.22), rgba(82, 179, 255, 0.08) 60%, rgba(30, 231, 182, 0.14));
+      --max: 1240px;
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --nav-h: 88px;
     }
 
-    /* ===== HERO ===== */
-    header{
-      margin-top:72px;
-      min-height:92vh;
-      background:var(--hero-grad);
-      position:relative;
-      display:flex;
-      align-items:center;
-      overflow:hidden;
-    }
-    header::before{
-      content:'';
-      position:absolute;inset:0;
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
       background:
-        radial-gradient(800px 420px at 20% 20%, rgba(255,255,255,0.22), transparent 60%),
-        radial-gradient(900px 520px at 80% 30%, rgba(255,255,255,0.16), transparent 62%),
-        radial-gradient(900px 520px at 50% 100%, rgba(16,185,129,0.18), transparent 64%);
-      opacity:0.9;
-      pointer-events:none;
-    }
-    header::after{
-      content:'';
-      position:absolute;top:-60px;left:-60px;
-      width:320px;height:320px;border-radius:80px;
-      background:rgba(255,255,255,0.10);
-      transform:rotate(18deg);
-      filter:blur(1px);
-      opacity:0.8;
-      pointer-events:none;
+        radial-gradient(circle at top left, rgba(124, 92, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(82, 179, 255, 0.14), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(30, 231, 182, 0.10), transparent 28%),
+        linear-gradient(180deg, #05070d 0%, #070912 24%, #0a0f1d 100%);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
-    .hero{
-      position:relative;
-      z-index:1;
-      color:#fff;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:30px;
-      align-items:center;
-      width:100%;
-    }
-    @media(max-width:980px){ .hero{grid-template-columns:1fr} }
+    body.menu-open { overflow: hidden; }
 
-    .hero-badge{
-      display:inline-flex;align-items:center;gap:10px;
-      background:rgba(255,255,255,0.18);
-      padding:10px 18px;border-radius:999px;
-      font-size:0.95em;font-weight:700;
-      margin-bottom:18px;
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,0.18);
-    }
-    .dot{width:10px;height:10px;border-radius:99px;background:rgba(16,185,129,0.95);box-shadow:0 0 0 5px rgba(16,185,129,0.20)}
-    .hero-title{
-      font-size:3.4em;
-      font-weight:900;
-      margin-bottom:18px;
-      line-height:1.12;
-      letter-spacing:-0.06em;
-    }
-    @media(max-width:768px){ .hero-title{font-size:2.55em} }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
 
-    .hero-subtitle{
-      font-size:1.15em;
-      font-weight:400;
-      margin-bottom:28px;
-      opacity:0.96;
-      max-width:58ch;
-      line-height:1.75;
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
     }
 
-    .hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
-    .btn-white{
-      background:#fff;
-      color:#4f46e5;
-      box-shadow:0 12px 34px rgba(255,255,255,0.22);
+    .grid-bg,
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
     }
-    .btn-white:hover{transform:translateY(-2px);box-shadow:0 18px 46px rgba(255,255,255,0.28)}
-    .btn-outline{
-      background:transparent;
-      color:#fff;
-      border:2px solid rgba(255,255,255,0.9);
-    }
-    .btn-outline:hover{background:#fff;color:#4f46e5}
 
-    /* Right: banner card */
-    .heroCard{
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.20);
-      border-radius: 22px;
-      overflow:hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,0.20);
-      backdrop-filter: blur(10px);
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,1), rgba(0,0,0,0.25) 70%, transparent 100%);
+      opacity: 0.42;
     }
-    .heroBanner{
-      position:relative;
+
+    .noise {
+      z-index: -1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #dbe7ff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow .live-dot,
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(30, 231, 182, 0.16);
+      flex: 0 0 auto;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 42px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 6vw, 60px);
+      line-height: 1.04;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .section-title .highlight {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 18px);
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease, color .22s ease;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--gradient);
+      box-shadow: 0 18px 40px rgba(91, 121, 255, 0.30);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 24px 52px rgba(91, 121, 255, 0.38);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: #edf3ff;
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .btn-dark {
+      background: rgba(8, 10, 18, 0.72);
+      color: #fff;
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    .btn-dark:hover {
+      background: rgba(11, 14, 24, 0.92);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background .25s ease, border-color .25s ease;
+      background: rgba(6, 8, 14, 0.55);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav.scrolled {
+      background: rgba(6, 8, 14, 0.82);
+      border-bottom-color: rgba(255,255,255,0.12);
+    }
+
+    .nav-inner {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.26), rgba(82, 179, 255, 0.22));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 38px rgba(34, 37, 74, 0.42);
+      overflow: hidden;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .brand-logo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+      pointer-events: none;
+    }
+
+    .brand-fallback {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: #fff;
+      display: none;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-copy strong {
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .brand-copy span {
+      font-size: 12px;
+      line-height: 1.25;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 38ch;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-menu a {
+      position: relative;
+      transition: color .2s ease;
+    }
+
+    .nav-menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .2s ease;
+    }
+
+    .nav-menu a:hover { color: #fff; }
+    .nav-menu a:hover::after { transform: scaleX(1); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-toggle {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+      transition: transform .2s ease, opacity .2s ease;
+      content: "";
+      position: relative;
+    }
+
+    .menu-toggle span::before { position: absolute; top: -6px; }
+    .menu-toggle span::after { position: absolute; top: 6px; }
+
+    .menu-toggle.active span { background: transparent; }
+    .menu-toggle.active span::before { top: 0; transform: rotate(45deg); }
+    .menu-toggle.active span::after { top: 0; transform: rotate(-45deg); }
+
+    .mobile-panel {
+      position: fixed;
+      top: calc(var(--nav-h) + 8px);
+      left: 16px;
+      right: 16px;
+      z-index: 999;
+      padding: 18px;
+      border-radius: 24px;
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+      background: rgba(10, 13, 24, 0.95);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .mobile-panel.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-links {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .mobile-links a {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      color: #f0f5ff;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-actions .btn { flex: 1 1 180px; }
+
+    .hero {
+      position: relative;
+      padding: 54px 0 88px;
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      isolation: isolate;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 460px;
+      height: 460px;
+      top: 10%;
+      left: -120px;
+      background: rgba(124, 92, 255, 0.26);
+    }
+
+    .hero::after {
+      width: 420px;
+      height: 420px;
+      bottom: 0;
+      right: -100px;
+      background: rgba(82, 179, 255, 0.18);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(420px, .94fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 8vw, 80px);
+      line-height: 0.97;
+      letter-spacing: -0.075em;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .hero-title .line-soft { color: #cfe0ff; }
+
+    .hero-title .line-main {
+      display: block;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #ffffff 0%, #d6dfff 34%, #7fd4ff 75%, #6ef7d5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.85;
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #c8d5f6;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-mini strong {
+      display: block;
+      font-size: 13px;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .hero-mini span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hero-panel {
+      position: relative;
+      padding: 18px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 36%);
+      pointer-events: none;
+    }
+
+    .hero-banner {
+      position: relative;
       aspect-ratio: 16 / 10;
-      overflow:hidden;
-    }
-    .heroBanner img{
-      width:100%;height:100%;
-      object-fit:cover;display:block;
-      transform:scale(1.03);
-      filter:saturate(1.08) contrast(1.03);
-    }
-    .heroBanner::after{
-      content:'';
-      position:absolute;inset:0;
-      background: linear-gradient(180deg, rgba(15,23,42,0.05) 0%, rgba(15,23,42,0.35) 60%, rgba(15,23,42,0.55) 100%);
-      pointer-events:none;
-    }
-    .heroCardBody{padding:18px}
-    .heroMiniTitle{
-      font-weight:900;letter-spacing:-0.03em;
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      margin-bottom:12px;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,0.18);
-      border:1px solid rgba(255,255,255,0.18);
-      font-weight:800;font-size:12px;
-      white-space:nowrap;
-    }
-    .stats{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:10px;margin-top:12px;
-    }
-    @media(max-width:520px){ .stats{grid-template-columns:1fr} }
-    .stat{
-      background:rgba(255,255,255,0.16);
-      border:1px solid rgba(255,255,255,0.16);
-      border-radius:16px;
-      padding:12px;
-    }
-    .stat b{display:block;font-size:18px;font-weight:900;letter-spacing:-0.03em}
-    .stat span{display:block;margin-top:5px;font-size:12px;font-weight:700;opacity:0.9}
-
-    /* ===== SECTION ===== */
-    section{padding:80px 0}
-    .section-badge{
-      display:inline-block;
-      background:var(--gradient);
-      color:#fff;
-      padding:7px 16px;
-      border-radius:999px;
-      font-size:0.85em;
-      font-weight:800;
-      margin-bottom:14px;
-    }
-    .section-title{
-      font-size:2.45em;
-      font-weight:900;
-      margin-bottom:16px;
-      background:var(--gradient);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      letter-spacing:-0.05em;
-    }
-    .section-subtitle{
-      color:var(--gray);
-      font-size:1.1em;
-      margin-bottom:46px;
-      line-height:1.75;
-      font-weight:500;
-      max-width:70ch;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(124, 92, 255, 0.28), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(82, 179, 255, 0.18), transparent 26%),
+        linear-gradient(135deg, #0a1020 0%, #050912 54%, #071321 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      isolation: isolate;
     }
 
-    /* cards */
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:26px;
-      margin-top:24px;
-    }
-    .card{
-      background:#fff;
-      border-radius:20px;
-      padding:34px 28px;
-      box-shadow:0 10px 40px rgba(0,0,0,0.08);
-      transition:all 0.3s ease;
-      border:1px solid rgba(2,6,23,0.06);
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:'';
-      position:absolute;right:-120px;bottom:-120px;
-      width:260px;height:260px;border-radius:70px;
-      background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.18), transparent 60%);
-      transform: rotate(10deg);
-      pointer-events:none;
-    }
-    .card:hover{transform:translateY(-10px);box-shadow:0 20px 60px rgba(0,0,0,0.15)}
-    .icon{
-      width:62px;height:62px;
-      background:var(--gradient);
-      border-radius:16px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:1.55em;
-      margin-bottom:18px;
-      box-shadow:0 14px 34px rgba(99,102,241,0.18);
-      position:relative;
-      z-index:1;
-    }
-    .card h3{font-size:1.45em;font-weight:900;margin-bottom:12px;letter-spacing:-0.03em;position:relative;z-index:1}
-    .card p{color:var(--gray);line-height:1.75;font-weight:500;position:relative;z-index:1}
-
-    .bullets{margin-top:14px;display:grid;gap:10px}
-    .bullets div{
-      display:flex;gap:10px;align-items:flex-start;
-      color:#475569;font-weight:700;line-height:1.55;
-    }
-    .check{
-      width:20px;height:20px;border-radius:7px;
-      background:rgba(16,185,129,0.12);
-      border:1px solid rgba(16,185,129,0.22);
-      display:grid;place-items:center;
-      color:rgba(16,185,129,0.95);
-      flex:0 0 20px;
-      margin-top:2px;
-      font-size:12px;
-      font-weight:900;
+    .hero-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      filter: saturate(1.06) contrast(1.03);
+      opacity: 0;
+      transition: opacity .32s ease;
+      z-index: 0;
     }
 
-    /* CTA section */
-    .cta-section{
-      background: linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);
-      border-radius:30px;
-      padding:78px 40px;
-      text-align:center;
-      color:#fff;
-      margin: 90px auto;
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 24px 80px rgba(99,102,241,0.25);
-    }
-    .cta-section::before{
-      content:'';
-      position:absolute;inset:0;
-      background:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.06"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-      opacity:0.55;
-      pointer-events:none;
-    }
-    .cta-title{font-size:2.35em;font-weight:900;margin-bottom:16px;letter-spacing:-0.05em}
-    .cta-subtitle{font-size:1.15em;margin-bottom:30px;opacity:0.95;line-height:1.7}
-    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
-    /* FAQ */
-    .faq-container{max-width:900px;margin:20px auto 0}
-    .faq-item{
-      background:#fff;
-      border-radius:16px;
-      margin-bottom:16px;
-      overflow:hidden;
-      box-shadow:0 6px 22px rgba(0,0,0,0.06);
-      border:1px solid rgba(2,6,23,0.06);
-    }
-    .faq-question{
-      padding:22px 24px;
-      font-size:1.1em;
-      font-weight:800;
-      cursor:pointer;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:#fff;
-      transition:all .25s ease;
-      letter-spacing:-0.02em;
-    }
-    .faq-question:hover{background:#f8f9ff}
-    .faq-icon{
-      font-size:1.6em;
-      font-weight:400;
-      color:var(--primary);
-      transition:transform .25s ease;
-      line-height:1;
-    }
-    .faq-item.active .faq-icon{transform:rotate(45deg)}
-    .faq-answer{
-      padding:0 24px 0;
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .35s ease,padding .35s ease;
-      color:#64748b;
-      line-height:1.85;
-      font-weight:500;
-    }
-    .faq-item.active .faq-answer{padding:0 24px 22px;max-height:320px}
-
-    /* footer */
-    footer{
-      background:rgba(10,10,10,0.92);
-      color:#fff;
-      padding:56px 20px 28px;
-      text-align:center;
-      border-top:1px solid rgba(148,163,184,0.12);
-      position:relative;
-    }
-    footer::before{
-      content:'';
-      position:absolute;top:0;left:0;width:100%;height:1px;
-      background:linear-gradient(90deg,transparent,#3b82f6,#8b5cf6,#06b6d4,transparent);
-    }
-    .footer-grid{
-      max-width:1200px;margin:0 auto;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:30px;
-      text-align:left;
-      padding:0 20px;
-    }
-    .footer-column h4{font-size:1.15em;margin-bottom:14px;font-weight:900;letter-spacing:-0.02em}
-    .footer-column ul{list-style:none}
-    .footer-column ul li{margin-bottom:10px;color:rgba(255,255,255,0.78);font-weight:600}
-    .footer-column ul li a{color:rgba(255,255,255,0.78)}
-    .footer-column ul li a:hover{color:#fff}
-    .footer-bottom{
-      max-width:1200px;margin:26px auto 0;
-      border-top:1px solid rgba(255,255,255,0.10);
-      padding-top:18px;
-      color:#94a3b8;
-      font-size:0.92rem;
-      letter-spacing:-0.02em;
-      font-weight:500;
+    .hero-banner.is-loaded img {
+      opacity: 1;
     }
 
-    /* Mobile quick CTA */
-    .bottomBar{
-      position:fixed;left:0;right:0;bottom:0;
-      z-index:1200;
-      padding:10px 12px;
-      background:rgba(255,255,255,0.92);
-      backdrop-filter:blur(10px);
-      border-top:1px solid rgba(15,23,42,0.08);
-      display:none;
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(5,7,13,0.08), rgba(5,7,13,0.16) 40%, rgba(5,7,13,0.82) 100%),
+        linear-gradient(135deg, rgba(124,92,255,0.12), transparent 42%, rgba(34,211,238,0.10) 100%);
+      pointer-events: none;
     }
-    .bottomBar .inner{
-      max-width:1200px;margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-    }
-    .bbTxt{display:flex;flex-direction:column;line-height:1.15}
-    .bbTxt b{font-size:13px;font-weight:900;letter-spacing:-0.02em}
-    .bbTxt span{font-size:12px;color:var(--gray);font-weight:700}
-    @media(max-width:900px){ .bottomBar{display:block} }
 
-    /* disable select/drag */
-    img{user-drag:none;-webkit-user-drag:none}
+    .hero-banner-state {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 24px;
+      transition: opacity .24s ease;
+      pointer-events: none;
+    }
+
+    .hero-banner-state strong {
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-banner-state span {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(8, 12, 22, 0.64);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dfe9ff;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .hero-banner-state span::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6ef7d5;
+      box-shadow: 0 0 0 5px rgba(110, 247, 213, 0.12);
+      flex: 0 0 auto;
+    }
+
+    .hero-banner.is-loaded .hero-banner-state {
+      opacity: 0;
+    }
+
+    .hero-panel-content {
+      position: relative;
+      margin-top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .live-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .live-card h3 {
+      font-size: 18px;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .live-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(10, 16, 30, 0.86);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      flex: 0 0 auto;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .hero-stat {
+      padding: 18px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-stat::after {
+      content: "";
+      position: absolute;
+      inset: auto -20px -40px auto;
+      width: 110px;
+      height: 110px;
+      border-radius: 28px;
+      background: rgba(124, 92, 255, 0.12);
+      filter: blur(8px);
+      transform: rotate(16deg);
+    }
+
+    .hero-stat .kpi {
+      display: block;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-stat span:last-child {
+      position: relative;
+      z-index: 1;
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero-trust {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .trust-item {
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(7, 11, 24, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .trust-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+      overflow: hidden;
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      bottom: -70px;
+      border-radius: 50px;
+      transform: rotate(16deg);
+      background: rgba(124, 92, 255, 0.12);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      background: var(--gradient-2);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+      font-size: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h3 {
+      position: relative;
+      z-index: 1;
+      font-size: 24px;
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .bullet-list {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #dce7ff;
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .bullet i {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+      background: rgba(30, 231, 182, 0.14);
+      border: 1px solid rgba(30, 231, 182, 0.25);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-style: normal;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .feature-strip {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .big-panel,
+    .side-panel {
+      padding: 30px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+    }
+
+    .big-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .big-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 -140px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(82, 179, 255, 0.10);
+      filter: blur(14px);
+    }
+
+    .big-panel h3,
+    .side-panel h3,
+    .timeline-card h3,
+    .faq-title {
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .big-panel p,
+    .side-panel p {
+      color: var(--muted);
+      line-height: 1.82;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .metrics {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(7, 12, 24, 0.74);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+      font-weight: 900;
+    }
+
+    .metric span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .side-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .side-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(7, 12, 24, 0.72);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .side-item b {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .side-item span {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.20);
+      overflow: hidden;
+    }
+
+    .timeline-card::before {
+      content: attr(data-step);
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      font-size: 64px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: rgba(255,255,255,0.06);
+    }
+
+    .timeline-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 86px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .timeline-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-band {
+      margin-top: 28px;
+      padding: 28px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.16), rgba(82, 179, 255, 0.10) 55%, rgba(30, 231, 182, 0.10));
+      border: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    }
+
+    .cta-band h3 {
+      font-size: clamp(24px, 4vw, 34px);
+      letter-spacing: -0.05em;
+      line-height: 1.08;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .cta-band p {
+      color: #d7e3ff;
+      line-height: 1.75;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex: 0 0 auto;
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .ops-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    }
+
+    .ops-card small {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #b8cbff;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .ops-card h3 {
+      font-size: 22px;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .ops-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .event-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .event-main,
+    .event-side {
+      padding: 30px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    }
+
+    .event-main h3,
+    .event-side h3 {
+      font-size: 28px;
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .event-main p,
+    .event-side p {
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .reward-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .reward {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(7, 12, 24, 0.74);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reward strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      letter-spacing: -0.03em;
+    }
+
+    .reward span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .policy-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .policy-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(7,12,24,0.74);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .policy-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .policy-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .faq-wrap {
+      display: grid;
+      gap: 14px;
+      max-width: 920px;
+    }
+
+    .faq-item {
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.16);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 22px 24px;
+      background: transparent;
+      color: #fff;
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faq-question span:first-child {
+      font-size: 18px;
+      line-height: 1.45;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+
+    .faq-plus {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      transition: transform .22s ease, background .22s ease;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease, padding .28s ease;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0 24px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 260px;
+      padding: 0 24px 22px;
+    }
+
+    .faq-item.active .faq-plus {
+      transform: rotate(45deg);
+      background: rgba(124,92,255,0.22);
+    }
+
+    .bottom-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 900;
+      padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+      display: none;
+      background: linear-gradient(180deg, rgba(7, 9, 18, 0), rgba(7, 9, 18, 0.86) 26%, rgba(7, 9, 18, 0.96));
+      pointer-events: none;
+    }
+
+    .bottom-cta-inner {
+      width: min(calc(100% - 8px), var(--max));
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 24px;
+      background: rgba(11, 14, 26, 0.94);
+      border: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: var(--shadow);
+      pointer-events: auto;
+      backdrop-filter: blur(16px);
+    }
+
+    .bottom-cta-copy b {
+      display: block;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .bottom-cta-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .footer {
+      position: relative;
+      padding: 72px 0 36px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(124,92,255,0.76), rgba(82,179,255,0.82), transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 22px;
+    }
+
+    .footer-col {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-col h4 {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .footer-col p,
+    .footer-col li,
+    .footer-col a {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+      font-weight: 600;
+      list-style: none;
+    }
+
+    .footer-col ul { display: grid; gap: 8px; list-style: none; }
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted-2);
+      font-size: 13px;
+      line-height: 1.7;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1180px) {
+      .nav-menu { gap: 20px; }
+      .hero-grid,
+      .feature-strip,
+      .event-board { grid-template-columns: 1fr; }
+      .ops-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 980px) {
+      .nav-menu,
+      .nav-actions .btn-secondary { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .hero { padding-top: 26px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { max-width: none; }
+      .hero-panel { order: -1; }
+      .cards,
+      .step-grid { grid-template-columns: 1fr; }
+      .hero-stats,
+      .hero-trust,
+      .reward-grid,
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cta-band { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --nav-h: 78px; }
+      .section { padding: 84px 0; }
+      .container { width: min(calc(100% - 24px), var(--max)); }
+      .nav-inner { width: min(calc(100% - 24px), var(--max)); }
+      .brand-copy span { max-width: 22ch; }
+      .hero-title { letter-spacing: -0.08em; }
+      .hero-actions,
+      .cta-actions,
+      .mobile-actions { width: 100%; }
+      .hero-actions .btn,
+      .cta-actions .btn,
+      .mobile-actions .btn { width: 100%; }
+      .hero-note { flex-direction: column; align-items: stretch; }
+      .hero-stats,
+      .hero-trust,
+      .reward-grid,
+      .metrics,
+      .ops-grid,
+      .footer-grid { grid-template-columns: 1fr; }
+      .live-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .big-panel,
+      .side-panel,
+      .event-main,
+      .event-side,
+      .timeline-card,
+      .card,
+      .footer-col { padding: 22px; }
+      .faq-question { padding: 18px 18px; }
+      .faq-question span:first-child { font-size: 16px; }
+      .faq-item.active .faq-answer { padding: 0 18px 18px; }
+      .bottom-cta { display: block; }
+      .footer { padding-bottom: 104px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-<body oncontextmenu="return false" onkeydown="return !(event.keyCode==123||event.ctrlKey&&event.shiftKey&&event.keyCode==73);">
-
-  <nav id="navbar" class="scrolled">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="발아레나 홈">
-        <div class="brandLogo" title="로고">
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="발아레나 홈으로 이동">
+        <div class="brand-logo">
           <img id="logoImg" src="./logo.png" alt="VALARENA 로고" />
+          <span class="brand-fallback" id="brandFallback">VA</span>
         </div>
-        <div class="brandText">
-          <b>발아레나</b>
-          <span>VALARENA · 내전/토너먼트 · 전원 추첨 이벤트</span>
+        <div class="brand-copy">
+          <strong>발아레나</strong>
+          <span>VALARENA · 밸런스 내전 · 공정한 운영</span>
         </div>
       </a>
 
-      <ul class="nav-links" aria-label="페이지 이동">
+      <ul class="nav-menu" aria-label="페이지 메뉴">
         <li><a href="#about">소개</a></li>
-        <li><a href="#how">참여방법</a></li>
+        <li><a href="#join">참여방법</a></li>
         <li><a href="#ops">운영방식</a></li>
         <li><a href="#events">이벤트</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a class="btn btn-ghost" href="#how">참여 흐름</a>
-        <a class="btn btn-primary" id="joinTop" href="#" target="_blank" rel="noopener">🚀 디스코드 입장</a>
+        <a class="btn btn-secondary" href="#join">참여 흐름 보기</a>
+        <a class="btn btn-primary" id="joinTop" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" aria-controls="mobilePanel">
+          <span></span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="top">
-    <div class="container">
-      <div class="hero">
-        <div>
-          <div class="hero-badge">
-            <span class="dot"></span>
-            <span><b id="heroBadgeText">매일 내전 · 동시 2~3개 운영</b> · 참여자 전원 랜덤 추첨</span>
+  <div class="mobile-panel" id="mobilePanel">
+    <ul class="mobile-links">
+      <li><a href="#about">소개</a></li>
+      <li><a href="#join">참여방법</a></li>
+      <li><a href="#ops">운영방식</a></li>
+      <li><a href="#events">이벤트</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="mobile-actions">
+      <a class="btn btn-secondary" href="#join">참여 흐름</a>
+      <a class="btn btn-primary" id="joinMobile" href="#" target="_blank" rel="noopener">지금 입장</a>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span class="live-dot"></span>
+            <span id="heroBadgeText">매일 내전 · 동시 2~3개 운영 · 참여자 전원 랜덤 추첨</span>
           </div>
 
           <h1 class="hero-title">
-            오늘도 “공정하게”<br />
-            재밌는 내전, <span style="text-decoration:underline; text-underline-offset:6px;">발아레나</span>
+            <span class="line-soft">공정하게 붙고,</span>
+            <span class="line-main">깔끔하게 즐기는<br />발로란트 내전</span>
           </h1>
 
-          <p class="hero-subtitle">
-            레디언트부터 브론즈까지 함께 뛰는 발로란트 내전 커뮤니티.<br/>
-            참여는 간단하게, 운영은 공정하게 — 기준은 언제나 공지입니다.
+          <p class="hero-desc">
+            발아레나는 레디언트부터 브론즈까지 부담 없이 참여할 수 있도록
+            <strong style="color:#edf4ff;">밸런스 매칭</strong>,
+            <strong style="color:#edf4ff;">빠른 운영</strong>,
+            <strong style="color:#edf4ff;">명확한 공지 기준</strong>에 집중한
+            발로란트 디스코드 커뮤니티입니다.
           </p>
 
-          <div class="hero-buttons">
-            <a href="#" id="joinHero" target="_blank" rel="noopener" class="btn btn-white">🚀 디스코드 바로 입장</a>
-            <a href="#how" class="btn btn-outline">참여 방법 보기</a>
+          <div class="hero-actions">
+            <a class="btn btn-primary" id="joinHero" href="#" target="_blank" rel="noopener">지금 바로 입장</a>
+            <a class="btn btn-secondary" href="#join">참여 방법 보기</a>
           </div>
 
-          <p style="margin-top:16px; opacity:0.92; font-weight:700; letter-spacing:-0.02em;">
-            ※ 최종 기준: 서버 내부 공지/고정 메시지
+          <div class="hero-note">
+            <div class="hero-mini">
+              <div class="status-dot"></div>
+              <div>
+                <strong>오늘도 운영 중</strong>
+                <span>최종 기준은 항상 서버 공지/고정</span>
+              </div>
+            </div>
+            <div class="hero-mini">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3L20 7V12C20 16.5 16.94 20.74 12 22C7.06 20.74 4 16.5 4 12V7L12 3Z" stroke="#8ec8ff" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 12L11 14L15.5 9.5" stroke="#6ef7d5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <strong>기준이 명확한 운영</strong>
+                <span>헷갈리면 공지 기준으로 바로 확인</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal" aria-label="발아레나 운영 요약 카드">
+          <div class="hero-banner" id="heroBanner">
+            <img id="bannerImg" alt="VALARENA 배너 이미지" loading="eager" decoding="async" fetchpriority="high" />
+            <div class="hero-banner-state" id="bannerState">
+              <span>배너 안정 로드</span>
+              <strong>VALARENA</strong>
+            </div>
+          </div>
+
+          <div class="hero-panel-content">
+            <div class="live-card">
+              <div>
+                <h3>오늘 운영 현황</h3>
+                <p>업데이트 <strong id="dashTime" style="color:#fff; font-weight:800;">방금 전</strong> · 공정한 밸런스 매칭 기반으로 운영 중</p>
+              </div>
+              <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>운영중</span>
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="kpi" id="s1">매일</span>
+                <span>기본 내전 운영</span>
+              </div>
+              <div class="hero-stat">
+                <span class="kpi" id="s2">30+</span>
+                <span>일일 참석 흐름</span>
+              </div>
+              <div class="hero-stat">
+                <span class="kpi" id="s3">2~3개</span>
+                <span>동시 내전 진행</span>
+              </div>
+            </div>
+
+            <div class="hero-trust">
+              <div class="trust-item">
+                <strong>참여 장벽 낮게</strong>
+                <p>처음 온 사람도 공지 따라 바로 참여 가능</p>
+              </div>
+              <div class="trust-item">
+                <strong>실력 부담 적게</strong>
+                <p>이벤트는 참여자 전원 랜덤 추첨 구조</p>
+              </div>
+              <div class="trust-item">
+                <strong>운영은 깔끔하게</strong>
+                <p>룰, 절차, 변동사항 모두 공지 중심으로 정리</p>
+              </div>
+            </div>
+
+            <div class="hero-actions" style="margin:0;">
+              <a class="btn btn-primary" id="joinCard" href="#" target="_blank" rel="noopener">입장하고 참여하기</a>
+              <a class="btn btn-dark" href="#events">이벤트 보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">About VALARENA</div>
+          <h2 class="section-title">처음 와도 바로 이해되는 <br> <span class="highlight">깔끔한 내전 구조</span></h2>
+          <p class="section-desc">
+            발아레나는 “참여는 쉽게, 경기는 재밌게, 운영은 명확하게”를 기준으로 설계했습니다.
+            <br> 한쪽으로 크게 기우는 매치를 줄이고, <br> 처음 온 사람도 바로 적응할 수 있는 흐름을 만드는 데 집중합니다.
           </p>
         </div>
 
-        <div class="heroCard" aria-label="배너/운영 요약">
-          <div class="heroBanner">
-            <img id="bannerImg" src="" alt="VALARENA 배너" loading="eager" decoding="async" />
-          </div>
-          <div class="heroCardBody">
-            <div class="heroMiniTitle">
-              <span>오늘 운영 현황</span>
-              <span class="pill"><span class="dot" style="width:8px;height:8px;box-shadow:0 0 0 4px rgba(16,185,129,0.18)"></span> 운영중</span>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">🎯</div>
+            <h3>밸런스 중심 매칭</h3>
+            <p>티어와 역할 흐름을 고려해 매치 품질이 무너지지 않도록 팀을 구성합니다.</p>
+            <div class="bullet-list">
+              <div class="bullet"><i>✓</i><span>한쪽만 압도하는 판 최소화</span></div>
+              <div class="bullet"><i>✓</i><span>팀플과 콜 연습에 적합한 흐름</span></div>
+              <div class="bullet"><i>✓</i><span>분쟁이 적은 안정적인 운영 구조</span></div>
             </div>
-            <div style="opacity:0.9;font-weight:700">업데이트: <span id="dashTime">방금 전</span></div>
+          </article>
 
-            <div class="stats">
-              <div class="stat">
-                <b id="s1">매일</b>
-                <span>내전 운영</span>
+          <article class="card reveal">
+            <div class="card-icon">⚡</div>
+            <h3>동시 운영으로 대기 최소화</h3>
+            <p>인원이 몰릴 때도 흐름이 끊기지 않도록 2~3개 내전을 동시에 열 수 있게 설계했습니다.</p>
+            <div class="bullet-list">
+              <div class="bullet"><i>✓</i><span>동시 4~6팀 규모까지 대응</span></div>
+              <div class="bullet"><i>✓</i><span>대기 시간을 줄여 참여 피로도 감소</span></div>
+              <div class="bullet"><i>✓</i><span>매일 참여하기 좋은 운영 리듬</span></div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🎁</div>
+            <h3>누구에게나 열린 이벤트</h3>
+            <p>잘하는 사람만 유리한 방식이 아니라, 참여자 전원에게 같은 기회가 돌아가도록 구성합니다.</p>
+            <div class="bullet-list">
+              <div class="bullet"><i>✓</i><span>초보도 부담 없이 참여 가능</span></div>
+              <div class="bullet"><i>✓</i><span>공평한 랜덤 추첨 중심 구조</span></div>
+              <div class="bullet"><i>✓</i><span>꾸준히 이어가기 좋은 참여 경험</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="feature-strip">
+          <article class="big-panel reveal">
+            <div class="eyebrow">Core Value</div>
+            <h3>“재밌는 판”이 계속 나오게 만드는 구조</h3>
+            <p>
+              발아레나의 핵심은 단순히 사람이 많은 서버가 아니라,
+              <br> 실제로 들어왔을 때 <strong style="color:#fff;">경기 흐름이 좋고 참여가 편한 서버</strong>로 느껴지게 만드는 것입니다.
+              <br> 밸런스, 속도, 공지 기준 이 세 가지를 계속 유지하는 쪽으로 설계했습니다.
+            </p>
+
+            <div class="metrics">
+              <div class="metric">
+                <strong>공정성</strong>
+                <span>팀 구성과 이벤트 구조 모두 참여 기준 중심</span>
               </div>
-              <div class="stat">
-                <b id="s2">30+</b>
-                <span>일일 참석</span>
+              <div class="metric">
+                <strong>속도감</strong>
+                <span>대기와 병목을 줄이는 동시 운영 방식</span>
               </div>
-              <div class="stat">
-                <b id="s3">2~3개</b>
-                <span>동시 내전</span>
+              <div class="metric">
+                <strong>명확함</strong>
+                <span>최종 기준은 언제나 서버 공지/고정</span>
               </div>
             </div>
+          </article>
 
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn btn-primary" id="joinCard" href="#" target="_blank" rel="noopener" style="padding:12px 16px;">입장하고 참여하기</a>
-              <a class="btn btn-ghost" href="#events" style="padding:12px 16px;">이벤트 확인</a>
+          <aside class="side-panel reveal">
+            <div class="eyebrow">Why People Stay</div>
+            <h3>서버가 깔끔하면 참여도 편해집니다</h3>
+            <p>복잡한 절차보다는, 입장 후 바로 흐름을 이해하고 참여할 수 있도록 구조를 단순하게 정리했습니다.</p>
+            <div class="side-list">
+              <div class="side-item">
+                <div class="status-dot" style="margin-top:4px;"></div>
+                <div>
+                  <b>처음 와도 적응이 빠름</b>
+                  <span>페이지와 공지 흐름이 명확해서 헤매지 않음</span>
+                </div>
+              </div>
+              <div class="side-item">
+                <div class="status-dot" style="margin-top:4px;"></div>
+                <div>
+                  <b>매치 품질 유지</b>
+                  <span>한쪽으로 기우는 판을 줄이는 방향으로 운영</span>
+                </div>
+              </div>
+              <div class="side-item">
+                <div class="status-dot" style="margin-top:4px;"></div>
+                <div>
+                  <b>이벤트도 부담 없이</b>
+                  <span>참여 자체가 보상 기회가 되는 구조</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="join">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">How To Join</div>
+          <h2 class="section-title">복잡한 절차 없이, <span class="highlight">바로 참여</span></h2>
+          <p class="section-desc">
+            처음 방문한 사람도 입장 후 공지 흐름만 확인하면 <br> 바로 참여할 수 있게 단계를 단순화했습니다.
+          </p>
+        </div>
+
+        <div class="step-grid">
+          <article class="timeline-card reveal" data-step="01">
+            <div class="timeline-chip">STEP 1</div>
+            <h3>입장 후 구조 확인</h3>
+            <p>서버 공지와 내전 관련 채널을 먼저 확인하면, 현재 참여 흐름을 빠르게 이해할 수 있습니다.</p>
+            <div class="bullet-list">
+              <div class="bullet"><i>✓</i><span>처음 와도 부담 없는 구조</span></div>
+              <div class="bullet"><i>✓</i><span>공지 채널 중심 동선</span></div>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal" data-step="02">
+            <div class="timeline-chip">STEP 2</div>
+            <h3>참석 표시</h3>
+            <p>안내된 버튼이나 양식대로 참석 의사를 표시하면 운영 흐름에 맞게 바로 반영됩니다.</p>
+            <div class="bullet-list">
+              <div class="bullet"><i>✓</i><span>절차가 과하게 복잡하지 않음</span></div>
+              <div class="bullet"><i>✓</i><span>운영 기준이 공지와 통일됨</span></div>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal" data-step="03">
+            <div class="timeline-chip">STEP 3</div>
+            <h3>팀 배정 후 바로 시작</h3>
+            <p>밸런스 기준으로 팀이 정리되면 안내에 따라 빠르게 내전에 합류할 수 있습니다.</p>
+            <div class="bullet-list">
+              <div class="bullet"><i>✓</i><span>팀플과 콜 연습에 적합한 진행</span></div>
+              <div class="bullet"><i>✓</i><span>대기보다 플레이 중심의 흐름</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-band reveal">
+          <div>
+            <h3>오늘 내전, 지금 들어와서 바로 참여</h3>
+            <p>입장 후 공지대로만 따라오면 됩니다. 규칙과 운영 기준은 서버 내부 공지가 최종입니다.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" id="joinJoin" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+            <a class="btn btn-secondary" href="#faq">FAQ 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ops">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Operations</div>
+          <h2 class="section-title">운영 기준이 분명해야 <br> <span class="highlight">분위기도 깔끔합니다</span></h2>
+          <p class="section-desc">
+            발아레나는 분위기만 좋은 서버가 아니라, <br> 운영 기준까지 명확해서 오래 참여하기 편한 구조를 지향합니다.
+          </p>
+        </div>
+
+        <div class="ops-grid">
+          <article class="ops-card reveal">
+            <small>01</small>
+            <h3>동시 운영</h3>
+            <p>인원이 몰리는 시간대에도 병목이 길어지지 않도록 2~3개 내전을 동시에 진행합니다.</p>
+          </article>
+          <article class="ops-card reveal">
+            <small>02</small>
+            <h3>밸런스 기준</h3>
+            <p>티어와 역할 흐름을 기반으로 팀을 구성해 경기 품질이 크게 무너지지 않게 운영합니다.</p>
+          </article>
+          <article class="ops-card reveal">
+            <small>03</small>
+            <h3>공지 최종</h3>
+            <p>규칙, 일정, 참여 방식이 헷갈릴 때는 서버 공지와 고정 메시지를 가장 우선으로 확인합니다.</p>
+          </article>
+          <article class="ops-card reveal">
+            <small>04</small>
+            <h3>증거 기반 처리</h3>
+            <p>분쟁이나 신고는 스크린샷·클립 등 근거와 함께 전달하면 공지 기준에 따라 처리됩니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="events">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Events & Rewards</div>
+          <h2 class="section-title">단발이 아니라, <br> <span class="highlight">계속 이어지는 이벤트 흐름</span></h2>
+          <p class="section-desc">
+            실력이 아니라 참여 자체에 보상이 돌아가도록 설계해, <br> 초보부터 고티어까지 모두 부담 없이 들어올 수 있는 구조를 만듭니다.
+          </p>
+        </div>
+
+        <div class="event-board">
+          <article class="event-main reveal">
+            <h3>지급 예시 / 참여 보상 흐름</h3>
+            <p>
+              이벤트는 “누가 제일 잘했는가”보다 “누가 같이 참여했는가”에 더 무게를 둡니다.
+              그래서 처음 온 사람도 실력 부담 없이 <br> 자연스럽게 서버 분위기에 섞일 수 있습니다.
+            </p>
+
+            <div class="reward-grid">
+              <div class="reward">
+                <strong>아티산 하야테 오츠</strong>
+                <span>장비형 이벤트 예시</span>
+              </div>
+              <div class="reward">
+                <strong>Razer Viper V3</strong>
+                <span>장비형 이벤트 예시</span>
+              </div>
+              <div class="reward">
+                <strong>레이저 헤드셋</strong>
+                <span>장비형 이벤트 예시</span>
+              </div>
+              <div class="reward">
+                <strong>3,650 ~ 5,350 VP</strong>
+                <span>인게임 보상 예시</span>
+              </div>
+            </div>
+          </article>
+
+          <aside class="event-side reveal">
+            <h3>핵심은 참여 부담을 낮추는 것</h3>
+            <p>이벤트와 운영은 모두 “계속 들어오고 싶게 만드는 경험”을 목표로 합니다. 최신 일정과 규칙은 서버 공지 기준으로 확인하면 됩니다.</p>
+            <div class="policy-list">
+              <div class="policy-item">
+                <strong>참여자 전원 포함</strong>
+                <span>잘하는 사람만 유리한 구조가 아니라 누구나 기회가 생김</span>
+              </div>
+              <div class="policy-item">
+                <strong>최신 정보는 공지로 통일</strong>
+                <span>운영 시간, 규칙, 변동사항 모두 서버 공지에서 최신 버전 확인</span>
+              </div>
+              <div class="policy-item">
+                <strong>꾸준한 참여 경험</strong>
+                <span>매일 참여해도 지치지 않도록 흐름 자체를 깔끔하게 정리</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">FAQ</div>
+          <h2 class="section-title">처음 오는 사람이 <br> 가장 많이 묻는 질문</h2>
+          <p class="section-desc">핵심만 빠르게 확인할 수 있게 자주 나오는 질문을 정리했습니다.</p>
+        </div>
+
+        <div class="faq-wrap">
+          <div class="faq-item reveal active">
+            <button class="faq-question" type="button">
+              <span>내전은 정말 매일 열리나요?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              기본적으로 매일 운영을 전제로 하며, 인원에 따라 동시 2~3개 내전까지 열어 수용량을 확보합니다.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>처음인데 바로 참여해도 괜찮나요?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              가능합니다. 입장 후 공지 흐름만 확인하면 별도 복잡한 절차 없이 바로 참여할 수 있도록 구조를 정리해 두었습니다.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>고티어만 유리한 구조 아닌가요?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              아닙니다. 이벤트는 참여자 전원 랜덤 추첨 기반이라 실력 부담보다 참여 자체에 의미가 가도록 설계되어 있습니다.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>팀 밸런스는 어떤 기준으로 맞추나요?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              티어와 역할 흐름을 바탕으로 한쪽이 크게 압도하는 매치를 줄이는 방향으로 구성합니다. 세부 기준은 서버 공지가 최종입니다.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>분쟁이나 신고는 어디로 전달하나요?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              운영진 문의 루트로 스크린샷이나 클립 같은 증거와 함께 전달하면, 공지 기준에 따라 확인 및 처리됩니다.
             </div>
           </div>
         </div>
 
+        <div class="cta-band reveal" style="margin-top:28px;">
+          <div>
+            <h3>발아레나에서 오늘 내전 바로 참여하기</h3>
+            <p>들어와서 공지 흐름만 확인하면 끝. 빠르고, 공정하고, 깔끔한 내전 참여 경험을 목표로 운영합니다.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" id="joinFaq" href="#" target="_blank" rel="noopener">디스코드 입장</a>
+            <a class="btn btn-secondary" href="#top">맨 위로</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </header>
+    </section>
+  </main>
 
-  <!-- ABOUT -->
-  <section id="about">
+  <footer class="footer">
     <div class="container">
-      <div class="section-badge">ABOUT</div>
-      <h2 class="section-title">발아레나는 “참여가 쉬운” 내전 구조</h2>
-      <p class="section-subtitle">
-        한쪽이 압도해 재미가 깨지는 경기를 줄이고,<br/>
-        처음 온 사람도 바로 참여할 수 있는 구조를 만드는 것이 목표입니다.<br/>
-        운영은 빠르게, 기준은 공지로 명확하게 가져갑니다.
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="icon">🎯</div>
-          <h3>밸런스 매칭 지향</h3>
-          <p>티어/역할 흐름을 고려해 팀을 구성하고, 매치 품질이 무너지지 않게 운영합니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>한쪽만 압도하는 판 최소화</div>
-            <div><span class="check">✓</span>팀플/콜 연습에 최적</div>
-            <div><span class="check">✓</span>분쟁 리스크 낮춤</div>
-          </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>발아레나 | VALARENA</h4>
+          <p>
+            발로란트 내전/토너먼트 중심 디스코드 커뮤니티.<br />
+            매일 내전, 동시 운영, 참여자 전원 랜덤 추첨 이벤트 기반으로
+            부담 없이 참여할 수 있는 흐름을 지향합니다.
+          </p>
         </div>
 
-        <div class="card">
-          <div class="icon">⚡</div>
-          <h3>동시 2~3개 내전 운영</h3>
-          <p>인원이 몰려도 병목이 덜하도록 “동시 진행”으로 대기 시간을 줄입니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>수용량 확보 (동시 4~6팀)</div>
-            <div><span class="check">✓</span>흐름 끊김 최소화</div>
-            <div><span class="check">✓</span>기본은 매일 운영</div>
-          </div>
+        <div class="footer-col">
+          <h4>바로가기</h4>
+          <ul>
+            <li><a href="#about">소개</a></li>
+            <li><a href="#join">참여방법</a></li>
+            <li><a href="#ops">운영방식</a></li>
+            <li><a href="#events">이벤트</a></li>
+          </ul>
         </div>
 
-        <div class="card">
-          <div class="icon">🎁</div>
-          <h3>참여자 전원 랜덤 추첨</h3>
-          <p>“잘해야 받는” 이벤트가 아니라 “참여하면 공평”한 구조로 부담을 낮춥니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>초보도 참여 장벽 ↓</div>
-            <div><span class="check">✓</span>누구나 기회 동일</div>
-            <div><span class="check">✓</span>꾸준한 운영 이력</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW -->
-  <section id="how">
-    <div class="container">
-      <div class="section-badge">HOW TO JOIN</div>
-      <h2 class="section-title">처음 온 사람도, 바로 참여</h2>
-      <p class="section-subtitle">
-        복잡한 신청서 없이, 공지대로만 따라오면 바로 참여됩니다.
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="icon">①</div>
-          <h3>입장 후 자유롭게 둘러보기</h3>
-          <p>별도의 절차 없이 서버 구조와 공지를 천천히 확인해 보세요.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>처음 와도 부담 없이</div>
-            <div><span class="check">✓</span>공지/내전 채널 바로 확인 가능</div>
-          </div>
+        <div class="footer-col">
+          <h4>입장</h4>
+          <ul>
+            <li><a id="joinFooter" href="#" target="_blank" rel="noopener">디스코드 초대 링크</a></li>
+            <li>최종 기준은 항상 서버 공지/고정 메시지입니다.</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <div class="icon">②</div>
-          <h3>참석 버튼 클릭</h3>
-          <p>내전 안내 채널에서 안내된 버튼/양식대로 참여를 표시합니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>절차 최소화</div>
-            <div><span class="check">✓</span>공지 기준으로 통일</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="icon">③</div>
-          <h3>팀 배정 → 내전 시작</h3>
-          <p>밸런스 기준으로 팀을 구성하고, 진행 안내에 따라 바로 시작합니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>팀플/콜 연습 최적</div>
-            <div><span class="check">✓</span>쾌적한 진행 흐름</div>
-          </div>
+        <div class="footer-col">
+          <h4>운영 포인트</h4>
+          <ul>
+            <li>기본: 매일 운영</li>
+            <li>동시: 2~3개 내전</li>
+            <li>핵심: 밸런스 매칭 + 공지 기준</li>
+          </ul>
         </div>
       </div>
 
-      <div class="cta-section" style="margin-top:60px" aria-label="중간 CTA">
-        <h2 class="cta-title">오늘 내전, 지금 바로 들어와서 참여</h2>
-        <p class="cta-subtitle">
-          입장 후 공지대로만 따라오면 바로 참여됩니다.<br/>
-          (운영 정책/규칙 최종 기준: 서버 공지)
-        </p>
-        <div class="cta-actions">
-          <a href="#" id="joinHow" target="_blank" rel="noopener" class="btn btn-white">🚀 디스코드 입장</a>
-          <a href="#faq" class="btn btn-outline">FAQ 보기</a>
-        </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> VALARENA. All rights reserved.</span>
+        <span>Designed for a cleaner, more premium VALARENA landing page.</span>
       </div>
-    </div>
-  </section>
-
-  <!-- OPS -->
-  <section id="ops">
-    <div class="container">
-      <div class="section-badge">OPERATIONS</div>
-      <h2 class="section-title">운영 방식 (공지 최종)</h2>
-      <p class="section-subtitle">
-        운영 정책은 고정/공지 기준으로 업데이트됩니다. 분쟁/신고는 증거와 함께 전달해 주세요.
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="icon">🧭</div>
-          <h3>동시 운영으로 “병목” 줄이기</h3>
-          <p>인원이 몰려도 대기 시간이 길어지지 않게 2~3개 내전을 동시 진행합니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>대기/흐름 끊김 최소화</div>
-            <div><span class="check">✓</span>수용량 확보</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="icon">⚖️</div>
-          <h3>밸런스 기준으로 팀 구성</h3>
-          <p>티어/역할 흐름 중심으로 팀을 구성해 매치 품질을 유지합니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>한쪽 압도 매치 감소</div>
-            <div><span class="check">✓</span>지속 가능한 운영</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="icon">📌</div>
-          <h3>공지/고정 메시지가 최종</h3>
-          <p>기준이 헷갈릴 땐 “공지/고정”을 최우선으로 확인해 주세요.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>룰/절차 명확</div>
-            <div><span class="check">✓</span>운영 변경 즉시 반영</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENTS -->
-  <section id="events">
-    <div class="container">
-      <div class="section-badge">EVENTS</div>
-      <h2 class="section-title">이벤트 / 지급 이력</h2>
-      <p class="section-subtitle">
-        단발이 아니라, 꾸준히 이어온 운영. (지급 예시는 변동될 수 있으며, 최종 공지는 서버 기준)
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="icon">🎁</div>
-          <h3>지급 예시</h3>
-          <p>참여자 전원 포함 랜덤 추첨 방식으로 “누구나 기회”가 생기게 운영합니다.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>아티산 하야테 오츠 마우스패드</div>
-            <div><span class="check">✓</span>Razer Viper V3 마우스</div>
-            <div><span class="check">✓</span>레이저 헤드셋</div>
-            <div><span class="check">✓</span>3,650 ~ 5,350 VP</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="icon">✨</div>
-          <h3>핵심 포인트</h3>
-          <p>“실력 부담”을 낮추고, “참여 자체”가 편하게 돌아가게 만드는 구조가 핵심이에요.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>처음 온 사람도 부담 ↓</div>
-            <div><span class="check">✓</span>매일 참여로 자연스럽게 성장</div>
-            <div><span class="check">✓</span>밸런스 내전 + 이벤트 재미</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="icon">🗓️</div>
-          <h3>일정/규칙은 공지로</h3>
-          <p>이벤트/운영 시간/참여 규칙은 서버 공지에서 가장 최신 버전을 확인해 주세요.</p>
-          <div class="bullets">
-            <div><span class="check">✓</span>변동 사항 즉시 공지</div>
-            <div><span class="check">✓</span>최신 정보 1곳으로 통일</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container">
-      <div class="section-badge">FAQ</div>
-      <h2 class="section-title">자주 묻는 질문</h2>
-      <p class="section-subtitle">처음 오는 사람이 제일 많이 묻는 것만 모았어요.</p>
-
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>내전은 진짜 매일 열리나요?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            네. 기본적으로 <b>매일 운영</b>을 전제로 합니다. 상황에 따라 <b>동시 2개~3개</b>까지 열어 수용량을 확보합니다.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>고티어만 유리한 구조 아닌가요?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            아닙니다. 이벤트는 <b>참여자 전원 포함 랜덤 추첨</b>이라 실력 부담 없이 공평하게 진행됩니다.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>팀 밸런스는 어떻게 맞추나요?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            티어/역할 흐름 기반으로 팀을 구성해 <b>한쪽만 압도</b>되는 매치를 줄이도록 운영합니다. (세부 기준은 공지가 최종)
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>처음인데 바로 참여해도 되나요?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            네. 안내가 정리되어 있어 공지대로만 따라오면 바로 참여 가능합니다.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>규칙 위반/분쟁은 어디로 신고하나요?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            서버에서 안내하는 운영진 문의 루트로 <b>증거(스크린샷/클립)</b>와 함께 전달해 주세요. 최종 처리 기준은 공지에 따릅니다.
-          </div>
-        </div>
-      </div>
-
-      <div class="cta-section" style="margin-top:60px" aria-label="하단 CTA">
-        <h2 class="cta-title">발아레나에서 매일 내전 참여하기</h2>
-        <p class="cta-subtitle">
-          들어오면 바로 참여할 수 있게 안내를 정리해뒀어요.<br/>
-          지금 입장해서 공지대로 진행하면 끝.
-        </p>
-        <div class="cta-actions">
-          <a href="#" id="joinFaq" target="_blank" rel="noopener" class="btn btn-white">🚀 디스코드 입장</a>
-          <a href="#top" class="btn btn-outline">맨 위로</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-column">
-        <h4>발아레나 | VALARENA</h4>
-        <ul>
-          <li>발로란트 내전/토너먼트 커뮤니티</li>
-          <li>매일 내전 · 동시 2~3개 운영</li>
-          <li>참여자 전원 랜덤 추첨 이벤트</li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>바로가기</h4>
-        <ul>
-          <li><a href="#how">참여방법</a></li>
-          <li><a href="#ops">운영방식</a></li>
-          <li><a href="#events">이벤트</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>입장</h4>
-        <ul>
-          <li><a id="joinFooter" href="#" target="_blank" rel="noopener">디스코드 초대 링크</a></li>
-          <li style="color:rgba(255,255,255,0.65);">최종 기준: 서버 공지/고정</li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>운영 안내</h4>
-        <ul>
-          <li>기본: 매일 운영</li>
-          <li>동시: 2~3개 내전</li>
-          <li>변동: 서버 공지 확인</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      © <span id="year"></span> VALARENA. All rights reserved.
     </div>
   </footer>
 
-  <!-- Mobile bottom CTA -->
-  <div class="bottomBar" role="region" aria-label="모바일 빠른 입장">
-    <div class="inner">
-      <div class="bbTxt">
+  <div class="bottom-cta" aria-label="모바일 빠른 입장">
+    <div class="bottom-cta-inner">
+      <div class="bottom-cta-copy">
         <b>오늘 내전 참여하기</b>
-        <span>전원 추첨 · 밸런스 매칭</span>
+        <span>공정한 밸런스 · 전원 랜덤 추첨 이벤트</span>
       </div>
-      <a class="btn btn-primary" id="joinBottom" href="#" target="_blank" rel="noopener" style="padding:12px 16px;">입장</a>
+      <a class="btn btn-primary" id="joinBottom" href="#" target="_blank" rel="noopener">입장</a>
     </div>
   </div>
 
   <script>
-    // ✅ 여기만 바꾸면 전체 반영
     const CONFIG = {
       inviteLink: "https://discord.gg/V-ARENA",
-      banner: "https://cdn.discordapp.com/attachments/1441335254425272321/1456547322262720694/valarena.jpg?ex=69a73426&is=69a5e2a6&hm=4fa9dca46ae8f7d2737539d42620bfe2a3b1aa8e2ab5b7a606d6581b2c6b2bd0&=&format=webp&width=996&height=563",
+      bannerSources: [
+        "./banner.png",
+        "./banner.jpg",
+        "./assets/banner.png",
+        "./assets/banner.jpg",
+        "https://cdn.discordapp.com/attachments/1441335254425272321/1456547322262720694/valarena.jpg?ex=69a73426&is=69a5e2a6&hm=4fa9dca46ae8f7d2737539d42620bfe2a3b1aa8e2ab5b7a606d6581b2c6b2bd0&=&format=webp&width=996&height=563"
+      ],
       logo: "./logo.png",
       stats: { s1: "매일", s2: "30+", s3: "2~3개" },
-      heroBadgeText: "매일 내전 · 동시 2~3개 운영"
+      heroBadgeText: "매일 내전 · 동시 2~3개 운영 · 참여자 전원 랜덤 추첨"
     };
 
-    // Navbar shrink
-    (function(){
-      window.addEventListener('scroll', function(){
-        const navbar = document.getElementById('navbar');
-        if(window.scrollY > 50) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
-      }, { passive:true });
-    })();
+    const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobilePanel = document.getElementById("mobilePanel");
 
-    // Smooth scroll for anchors
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener('click', function(e){
-        const href = this.getAttribute('href');
-        if(!href || href === "#") return;
-        const target = document.querySelector(href);
-        if(target){
-          e.preventDefault();
-          target.scrollIntoView({ behavior:'smooth', block:'start' });
-        }
+    function preloadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.onload = () => resolve(src);
+        img.onerror = () => reject(new Error(`이미지 로드 실패: ${src}`));
+        img.src = src;
       });
-    });
+    }
 
-    // FAQ accordion
-    document.addEventListener('DOMContentLoaded', function(){
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item=>{
-        const q = item.querySelector('.faq-question');
-        q.addEventListener('click', function(){
-          const isActive = item.classList.contains('active');
-          faqItems.forEach(x=>x.classList.remove('active'));
-          if(!isActive) item.classList.add('active');
+    async function loadBanner() {
+      const bannerWrap = document.getElementById("heroBanner");
+      const bannerImg = document.getElementById("bannerImg");
+      if (!bannerWrap || !bannerImg) return;
+
+      const sources = Array.isArray(CONFIG.bannerSources)
+        ? CONFIG.bannerSources.filter(Boolean)
+        : [];
+
+      bannerWrap.classList.remove("is-loaded", "is-error");
+      bannerWrap.classList.add("is-loading");
+
+      for (const src of sources) {
+        try {
+          await preloadImage(src);
+          bannerImg.src = src;
+          bannerWrap.classList.remove("is-loading", "is-error");
+          bannerWrap.classList.add("is-loaded");
+          return;
+        } catch (error) {}
+      }
+
+      bannerImg.removeAttribute("src");
+      bannerWrap.classList.remove("is-loading", "is-loaded");
+      bannerWrap.classList.add("is-error");
+    }
+
+    function applyConfig() {
+      const logo = document.getElementById("logoImg");
+      const heroBadge = document.getElementById("heroBadgeText");
+      const ids = ["joinTop", "joinHero", "joinCard", "joinJoin", "joinFaq", "joinFooter", "joinBottom", "joinMobile"];
+
+      if (logo) logo.src = CONFIG.logo;
+      if (heroBadge) heroBadge.textContent = CONFIG.heroBadgeText;
+
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.href = CONFIG.inviteLink;
+      });
+
+      const s1 = document.getElementById("s1");
+      const s2 = document.getElementById("s2");
+      const s3 = document.getElementById("s3");
+      if (s1) s1.textContent = CONFIG.stats.s1;
+      if (s2) s2.textContent = CONFIG.stats.s2;
+      if (s3) s3.textContent = CONFIG.stats.s3;
+
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, "0");
+      const mm = String(now.getMinutes()).padStart(2, "0");
+      const dash = document.getElementById("dashTime");
+      if (dash) dash.textContent = `${hh}:${mm}`;
+
+      const year = document.getElementById("year");
+      if (year) year.textContent = String(now.getFullYear());
+
+      loadBanner();
+    }
+
+    function handleScroll() {
+      if (!navbar) return;
+      navbar.classList.toggle("scrolled", window.scrollY > 10);
+    }
+
+    function closeMenu() {
+      if (!mobilePanel || !menuToggle) return;
+      mobilePanel.classList.remove("open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+    }
+
+    function toggleMenu() {
+      if (!mobilePanel || !menuToggle) return;
+      const willOpen = !mobilePanel.classList.contains("open");
+      mobilePanel.classList.toggle("open", willOpen);
+      menuToggle.classList.toggle("active", willOpen);
+      menuToggle.setAttribute("aria-expanded", String(willOpen));
+      document.body.classList.toggle("menu-open", willOpen);
+    }
+
+    function bindAnchors() {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          const href = anchor.getAttribute("href");
+          if (!href || href === "#") return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          closeMenu();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
+    }
+
+    function bindFaq() {
+      const items = document.querySelectorAll(".faq-item");
+      items.forEach((item) => {
+        const q = item.querySelector(".faq-question");
+        if (!q) return;
+        q.addEventListener("click", () => {
+          const isActive = item.classList.contains("active");
+          items.forEach((el) => el.classList.remove("active"));
+          if (!isActive) item.classList.add("active");
+        });
+      });
+    }
+
+    function bindReveal() {
+      const targets = document.querySelectorAll(".reveal");
+      if (!targets.length) return;
+
+      if (!("IntersectionObserver" in window)) {
+        targets.forEach((el) => el.classList.add("show"));
+        return;
+      }
+
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.14 });
+
+      targets.forEach((el) => io.observe(el));
+    }
+
+    function bindLogoFallback() {
+      const logo = document.getElementById("logoImg");
+      const fallback = document.getElementById("brandFallback");
+      if (!logo || !fallback) return;
+      logo.addEventListener("error", () => {
+        logo.style.display = "none";
+        fallback.style.display = "block";
+      });
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 980) closeMenu();
     });
 
-    // Apply config
-    (function applyConfig(){
-      const banner = document.getElementById("bannerImg");
-      if(banner) banner.src = CONFIG.banner;
+    if (menuToggle) {
+      menuToggle.addEventListener("click", toggleMenu);
+    }
 
-      const logo = document.getElementById("logoImg");
-      if(logo) logo.src = CONFIG.logo;
+    document.addEventListener("click", (e) => {
+      if (!mobilePanel || !menuToggle) return;
+      if (!mobilePanel.classList.contains("open")) return;
+      const target = e.target;
+      if (mobilePanel.contains(target) || menuToggle.contains(target)) return;
+      closeMenu();
+    });
 
-      const ids = ["joinTop","joinHero","joinCard","joinHow","joinFaq","joinFooter","joinBottom"];
-      ids.forEach(id=>{
-        const el = document.getElementById(id);
-        if(el) el.href = CONFIG.inviteLink;
-      });
-
-      document.getElementById("s1").textContent = CONFIG.stats.s1;
-      document.getElementById("s2").textContent = CONFIG.stats.s2;
-      document.getElementById("s3").textContent = CONFIG.stats.s3;
-
-      const heroBadge = document.getElementById("heroBadgeText");
-      if(heroBadge) heroBadge.textContent = CONFIG.heroBadgeText;
-
-      // time
-      const d = new Date();
-      const hh = String(d.getHours()).padStart(2,"0");
-      const mm = String(d.getMinutes()).padStart(2,"0");
-      const dash = document.getElementById("dashTime");
-      if(dash) dash.textContent = `${hh}:${mm}`;
-
-      // year
-      document.getElementById("year").textContent = new Date().getFullYear();
-    })();
-
-    // Disable drag/select
-    document.addEventListener('dragstart', e=>e.preventDefault());
-    document.addEventListener('selectstart', e=>e.preventDefault());
+    applyConfig();
+    bindAnchors();
+    bindFaq();
+    bindReveal();
+    bindLogoFallback();
+    handleScroll();
   </script>
-
 </body>
 </html>
-
